@@ -5,8 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioSchool"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+        Title="MainWindow" Height="1080" Width="1920">
+    <Border>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
 
-    </Grid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btnCafeKiosk" Content="카페 주문하기" 
+                        Width="350" Height="450" FontSize="36" Margin="50 0"/>
+                <Button x:Name="btnHospitalKiosk" Content="병원 접수하기" 
+                        Width="350" Height="450" FontSize="36" Margin="50 0"/>
+            </StackPanel>
+
+            <StackPanel Grid.Row="2" VerticalAlignment="Center">
+                <Label Content="키오스크 훈련 시뮬레이터" FontSize="64" FontWeight="Bold" HorizontalAlignment="Center"/>
+                <Label Content="KioSchool" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center"/>
+            </StackPanel>
+        </Grid>
+    </Border>
 </Window>

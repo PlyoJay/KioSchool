@@ -16,9 +16,11 @@
 
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnCafeKiosk" Content="카페 주문하기" 
-                        Width="350" Height="450" FontSize="36" Margin="50 0"/>
+                        Style="{StaticResource HomeMenuButtonStyle}"
+                        Tag="/Resources/Images/CafeIcon.png"/>
                 <Button x:Name="btnHospitalKiosk" Content="병원 접수하기" 
-                        Width="350" Height="450" FontSize="36" Margin="50 0"/>
+                        Style="{StaticResource HomeMenuButtonStyle}"
+                        Tag="/Resources/Images/HospitalIcon.png"/>
             </StackPanel>
 
             <StackPanel Grid.Row="2" VerticalAlignment="Center">

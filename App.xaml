@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:KioSchool"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary Source="pack://application:,,,/KioSchool;component/Resources/Generic.xaml" />
     </Application.Resources>
 </Application>

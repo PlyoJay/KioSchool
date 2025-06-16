@@ -9,4 +9,14 @@
     <Platforms>AnyCPU;x64</Platforms>
   </PropertyGroup>
 
+  <ItemGroup>
+    <None Remove="Resources\Images\CafeIcon.png" />
+    <None Remove="Resources\Images\HospitalIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\CafeIcon.png" />
+    <Resource Include="Resources\Images\HospitalIcon.png" />
+  </ItemGroup>
+
 </Project>

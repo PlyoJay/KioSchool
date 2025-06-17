@@ -20,5 +20,10 @@ namespace KioSchool
         {
             InitializeComponent();
         }
+
+        private void btnCafeKiosk_Click(object sender, RoutedEventArgs e)
+        {
+            container.Visibility = Visibility.Visible;
+        }
     }
 }

@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioSchool"
+        xmlns:view="clr-namespace:KioSchool.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="950" Width="960" WindowStartupLocation="CenterScreen">
     <Border>
@@ -17,7 +18,8 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
                 <Button x:Name="btnCafeKiosk" Content="카페 주문하기" 
                         Style="{StaticResource HomeMenuButtonStyle}"
-                        Tag="/Resources/Images/CafeIcon.png"/>
+                        Tag="/Resources/Images/CafeIcon.png"
+                        Click="btnCafeKiosk_Click"/>
                 <Button x:Name="btnHospitalKiosk" Content="병원 접수하기" 
                         Style="{StaticResource HomeMenuButtonStyle}"
                         Tag="/Resources/Images/HospitalIcon.png"/>
@@ -27,6 +29,8 @@
                 <Label Content="키오스크 훈련 시뮬레이터" FontSize="64" FontWeight="Bold" HorizontalAlignment="Center"/>
                 <Label Content="KioSchool" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center"/>
             </StackPanel>
+
+            <view:Container x:Name="container" Grid.RowSpan="3" Visibility="Collapsed"/>
         </Grid>
     </Border>
 </Window>

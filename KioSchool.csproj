@@ -15,6 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Resources\Images\CafeIcon.png" />
     <Resource Include="Resources\Images\HospitalIcon.png" />
   </ItemGroup>

@@ -5,32 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioSchool"
         xmlns:view="clr-namespace:KioSchool.View"
+        xmlns:vm="clr-namespace:KioSchool.ViewModel"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:ei="http://schemas.microsoft.com/expression/2010/interactions"
         mc:Ignorable="d"
         Title="MainWindow" Height="950" Width="960" WindowStartupLocation="CenterScreen">
-    <Border>
-        <Grid>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
-            </Grid.RowDefinitions>
 
-            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button x:Name="btnCafeKiosk" Content="카페 주문하기" 
-                        Style="{StaticResource HomeMenuButtonStyle}"
-                        Tag="/Resources/Images/CafeIcon.png"
-                        Click="btnCafeKiosk_Click"/>
-                <Button x:Name="btnHospitalKiosk" Content="병원 접수하기" 
-                        Style="{StaticResource HomeMenuButtonStyle}"
-                        Tag="/Resources/Images/HospitalIcon.png"/>
-            </StackPanel>
+    <Window.DataContext>
+        <vm:MainViewModel/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVis"/>
+    </Window.Resources>
 
-            <StackPanel Grid.Row="2" VerticalAlignment="Center">
-                <Label Content="키오스크 훈련 시뮬레이터" FontSize="64" FontWeight="Bold" HorizontalAlignment="Center"/>
-                <Label Content="KioSchool" FontSize="60" FontWeight="Bold" HorizontalAlignment="Center"/>
-            </StackPanel>
+    <materialDesign:DialogHost DialogTheme="Inherit" Background="Transparent">
+        <materialDesign:DrawerHost IsLeftDrawerOpen="{Binding IsDrawerOpen, Mode=TwoWay}" OpenMode="Default">
+            <materialDesign:DrawerHost.LeftDrawerContent>
+                <DockPanel MinWidth="130" Background="White">
+                    <Grid Height="55" DockPanel.Dock="Top">
+                        <ToggleButton Margin="10 0"
+                        HorizontalAlignment="Right"                           
+                        IsChecked="{Binding IsDrawerOpen, Mode=TwoWay}"
+                        Style="{StaticResource MaterialDesignHamburgerToggleButton}" />
+                    </Grid>
 
-            <view:Container x:Name="container" Grid.RowSpan="3" Visibility="Collapsed"/>
-        </Grid>
-    </Border>
+                    <ListBox ItemsSource="{Binding MenuItems}"
+                         BorderThickness="0"
+                         Background="Transparent">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Button Command="{Binding Command}" Style="{StaticResource MaterialDesignFlatButton}" Background="Transparent" BorderThickness="0">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon Kind="{Binding IconKind}" Width="24" Height="24" VerticalAlignment="Center"/>
+                                        <TextBlock Text="{Binding Label}" FontSize="16" FontWeight="Bold" Margin="10 0"/>
+                                    </StackPanel>
+                                </Button>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </DockPanel>
+            </materialDesign:DrawerHost.LeftDrawerContent>
+            <Border>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="55"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <ToggleButton x:Name="MenuToggleButton" AutomationProperties.Name="HamburgerToggleButton" 
+                                  IsChecked="{Binding IsDrawerOpen, Mode=TwoWay}"
+                                  HorizontalAlignment="Left" Margin="10 0"
+                                  Style="{StaticResource MaterialDesignHamburgerToggleButton}"
+                                  Visibility="{Binding IsMenuToggleVisible, Converter={StaticResource BoolToVis}}"/>
+
+                    <ContentControl Grid.Row="1" Content="{Binding CurrentViewModel}"/>
+                </Grid>
+            </Border>
+        </materialDesign:DrawerHost>
+    </materialDesign:DialogHost>
 </Window>

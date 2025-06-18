@@ -17,11 +17,17 @@
   <ItemGroup>
     <PackageReference Include="MaterialDesignColors" Version="5.2.1" />
     <PackageReference Include="MaterialDesignThemes" Version="5.2.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
   </ItemGroup>
 
   <ItemGroup>
     <Resource Include="Resources\Images\CafeIcon.png" />
     <Resource Include="Resources\Images\HospitalIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\Pages\CafePages\" />
+    <Folder Include="View\Pages\HospitalPages\" />
   </ItemGroup>
 
 </Project>

@@ -25,6 +25,7 @@ namespace KioSchool.ViewModel
             set
             {
                 _currentViewModel = value;
+                Console.WriteLine($"CurrentViewModel changed to: {_currentViewModel?.GetType().Name}");
                 OnPropertyChanged();
 
                 IsMenuToggleVisible = !(value is HomeViewModel);

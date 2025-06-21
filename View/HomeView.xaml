@@ -18,7 +18,7 @@
                 <Button x:Name="btnCafeKiosk" Content="카페 주문하기" 
                         Style="{StaticResource HomeMenuButtonStyle}"
                         Tag="/Resources/Images/CafeIcon.png"
-                        Command="{Binding DataContext.ToHospitalCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+                        Command="{Binding DataContext.ToCafeKioskCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
                 <Button x:Name="btnHospitalKiosk" Content="병원 접수하기" 
                         Style="{StaticResource HomeMenuButtonStyle}"
                         Tag="/Resources/Images/HospitalIcon.png"

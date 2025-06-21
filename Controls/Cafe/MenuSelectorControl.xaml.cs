@@ -13,23 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace KioSchool.View
+namespace KioSchool.Controls.Cafe
 {
     /// <summary>
-    /// CafeKioskView.xaml에 대한 상호 작용 논리
+    /// MenuSelectorControl.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class CafeKioskView : UserControl
+    public partial class MenuSelectorControl : UserControl
     {
-        public CafeKioskView()
+        public MenuSelectorControl()
         {
             InitializeComponent();
-
-            Loaded += CafeKioskView_Loaded;
-        }
-
-        private void CafeKioskView_Loaded(object sender, RoutedEventArgs e)
-        {
-            Console.WriteLine("HIHIHIHIH");
         }
     }
 }

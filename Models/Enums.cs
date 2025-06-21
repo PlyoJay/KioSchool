@@ -13,6 +13,26 @@ namespace KioSchool.Models
         ToGo
     }
 
+    public enum DrinkType
+    {
+        Coffee,
+        Tea,
+        Ade,
+        Juice
+    }
+
+    public enum DrinkSize
+    {
+        Regular,
+        Large
+    }
+
+    public enum DrinkTemperature
+    {
+        Iced,
+        Hot
+    }
+
     public static class Enums
     {
         public static CafeOrderType CafeOrderType {  get; set; }

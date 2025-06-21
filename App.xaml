@@ -4,6 +4,7 @@
              xmlns:local="clr-namespace:KioSchool"
              xmlns:vm="clr-namespace:KioSchool.ViewModel"
              xmlns:views="clr-namespace:KioSchool.View"
+             xmlns:classes="clr-namespace:KioSchool.Classes"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
@@ -38,6 +39,11 @@
             <DataTemplate DataType="{x:Type vm:HospitalKioskViewModel}">
                 <views:HospitalKioskView />
             </DataTemplate>
+
+            <classes:SelectedToBrushConverter x:Key="SelectedToBrushConverter"
+                                    SelectedBrush="Black" UnselectedBrush="Transparent"/>
+            <classes:SelectedToForegroundConverter x:Key="SelectedToForegroundConverter"
+                                         SelectedBrush="White" UnselectedBrush="Black"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

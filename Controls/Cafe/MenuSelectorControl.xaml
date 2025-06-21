@@ -5,11 +5,17 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:KioSchool.Controls.Cafe"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:KioSchool.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="960">
+
+    <UserControl.DataContext>
+        <vm:MenuSelectorViewModel/>
+    </UserControl.DataContext>
+    
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90"/>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid Background="#FFE57D">
@@ -19,25 +25,71 @@
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
             <!--<materialDesign:PackIcon Kind="ChevronLeft" Height="90" Width="50"/>-->
-            <Button x:Name="btnCategoryLeft" Height="90" Width="50" Background="Transparent" BorderThickness="0">
-                <materialDesign:PackIcon Kind="ChevronLeft" Height="90" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+            <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
             </Button>
 
             <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
-                <StackPanel x:Name="spCategory">
-                    
-                </StackPanel>
+                <ItemsControl ItemsSource="{Binding CategoryItems}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel x:Name="spCategory" Orientation="Horizontal"/>
+                            <!-- StackPanel 역할 -->
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button Width="215" Height="70"
+                                    Padding="0" BorderThickness="0"
+                                    Command="{Binding DataContext.ChangeCateogryCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding}">
+                                <Button.Background>
+                                    <Binding Path="IsSelected" Converter="{StaticResource SelectedToBrushConverter}" />
+                                </Button.Background>
+                                <Grid VerticalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <TextBlock Text="{Binding Name}" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Bottom" 
+                                               Foreground="{Binding IsSelected, Converter={StaticResource SelectedToForegroundConverter}}"
+                                               FontSize="24" FontWeight="Bold"/>
+                                    <TextBlock Grid.Row="1" Text="{Binding EngName}" 
+                                               HorizontalAlignment="Center" VerticalAlignment="Top" 
+                                               Foreground="{Binding IsSelected, Converter={StaticResource SelectedToForegroundConverter}}"
+                                               FontSize="24" FontWeight="Bold"/>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
 
-            <Button x:Name="btnCategoryRight" Grid.Column="2" Height="90" Width="50" Background="Transparent" BorderThickness="0">
-                <materialDesign:PackIcon Kind="ChevronRight" Height="90" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+            <Button x:Name="btnCategoryRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <materialDesign:PackIcon Kind="ChevronRight" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
             </Button>
         </Grid>
         <Grid Grid.Row="1">
             <ScrollViewer>
-                <UniformGrid x:Name="ugrdMenuItems" Columns="4">
+                <ItemsControl ItemsSource="{Binding SelectedCategory.DrinkList}">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="4"/>
+                        </ItemsPanelTemplate >
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Button HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    Background="Red">
+                                <Grid Width="100" Height="100">
 
-                </UniformGrid>
+                                </Grid>
+                            </Button>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
             </ScrollViewer>
         </Grid>
     </Grid>

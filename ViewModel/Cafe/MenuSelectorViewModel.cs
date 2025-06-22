@@ -32,11 +32,13 @@ namespace KioSchool.ViewModel
         }
 
         public ICommand ChangeCateogryCommand { get; }
+        public ICommand AddDrinkToBasketCommand { get; }
 
 
         public MenuSelectorViewModel()
         {
             ChangeCateogryCommand = new RelayCommand(ChangeCategory);
+            AddDrinkToBasketCommand = new RelayCommand(AddDrinkToBasket);
 
             CategoryItems = new ObservableCollection<Category>()
             {
@@ -63,31 +65,43 @@ namespace KioSchool.ViewModel
             }
         }
 
+        private void AddDrinkToBasket(object obj)
+        {
+            throw new NotImplementedException();
+        }
+
         private ObservableCollection<Drink> SetCoffeeList()
         {
             ObservableCollection<Drink> coffeeList = new ObservableCollection<Drink>()
             {
                 new(1, "아메리카노", 1600, DrinkType.Coffee, 
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot}),
-                new(1, "카페라떼", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
+                    ""),
+                new(1, "카페라떼", 1900, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot}),
-                new(1, "바닐라라떼", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
+                    ""),
+                new(1, "바닐라라떼", 2100, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot}),
-                new(1, "카푸치노", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
+                    ""),
+                new(1, "카푸치노", 2100, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot}),
-                new(1, "카페모카", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
+                    ""),
+                new(1, "카페모카", 2200, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot}),
-                new(1, "콜드브루", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
+                    ""),
+                new(1, "콜드브루", 1800, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced}),
-                new(1, "콜드브루 라떼", 1600, DrinkType.Coffee,
+                    new List<DrinkTemperature>{DrinkTemperature.Iced},
+                    ""),
+                new(1, "콜드브루 라떼", 2100, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
-                    new List<DrinkTemperature>{DrinkTemperature.Iced}),
+                    new List<DrinkTemperature>{DrinkTemperature.Iced},
+                    ""),
             };
             return coffeeList;
         }

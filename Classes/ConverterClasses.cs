@@ -37,4 +37,27 @@ namespace KioSchool.Classes
             => throw new NotImplementedException();
     }
 
+    public class PriceToStringConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is double d)
+            {
+                return d.ToString(@"\#,#", CultureInfo.InvariantCulture).Replace("#", "₩");
+            }
+
+            return value;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            var str = value?.ToString()?.Replace("₩", "").Replace(",", "");
+            if (double.TryParse(str, out double result))
+            {
+                return result;
+            }
+
+            return 0;
+        }
+    }
 }

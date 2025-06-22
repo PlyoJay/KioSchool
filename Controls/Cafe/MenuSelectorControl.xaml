@@ -24,7 +24,6 @@
                 <ColumnDefinition/>
                 <ColumnDefinition Width="50"/>
             </Grid.ColumnDefinitions>
-            <!--<materialDesign:PackIcon Kind="ChevronLeft" Height="90" Width="50"/>-->
             <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
                 <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
             </Button>
@@ -76,15 +75,23 @@
                 <ItemsControl ItemsSource="{Binding SelectedCategory.DrinkList}">
                     <ItemsControl.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <UniformGrid Columns="4"/>
+                            <UniformGrid Columns="5"/>
                         </ItemsPanelTemplate >
                     </ItemsControl.ItemsPanel>
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <Button HorizontalAlignment="Center" VerticalAlignment="Center"
-                                    Background="Red">
-                                <Grid Width="100" Height="100">
-
+                                    Width="140" Height="150" Padding="0"
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="30"/>
+                                        <RowDefinition/>
+                                        <RowDefinition Height="30"/>
+                                    </Grid.RowDefinitions>
+                                    <Label Content="{Binding Name}" HorizontalAlignment="Left" Margin="5 0"/>
+                                    <Image Grid.Row="1" Source="/Resources/Images/CafeIcon.png"/>
+                                    <Label Grid.Row="2" Content="{Binding Price, Converter={StaticResource PriceToStringConverter}}" HorizontalAlignment="Right" Margin="5 0"/>
                                 </Grid>
                             </Button>
                         </DataTemplate>

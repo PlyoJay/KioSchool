@@ -1,0 +1,33 @@
+﻿<UserControl x:Class="KioSchool.Controls.Cafe.BasketControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:KioSchool.Controls.Cafe"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:vm="clr-namespace:KioSchool.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="200" d:DesignWidth="600">
+    <Border Background="#EDEDED">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="50"/>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="50"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+            </Button>
+
+            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
+                <ItemsControl>
+                    
+                </ItemsControl>
+            </ScrollViewer>
+            
+            <Button x:Name="btnCategoryRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <materialDesign:PackIcon Kind="ChevronRight" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+            </Button>
+        </Grid>
+    </Border>
+</UserControl>

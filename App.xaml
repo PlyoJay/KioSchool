@@ -44,6 +44,7 @@
                                     SelectedBrush="Black" UnselectedBrush="Transparent"/>
             <classes:SelectedToForegroundConverter x:Key="SelectedToForegroundConverter"
                                          SelectedBrush="White" UnselectedBrush="Black"/>
+            <classes:PriceToStringConverter x:Key="PriceToStringConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -7,27 +7,40 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:vm="clr-namespace:KioSchool.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="200" d:DesignWidth="600">
-    <Border Background="#EDEDED">
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="50"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="50"/>
-            </Grid.ColumnDefinitions>
-            <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
-                <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
-            </Button>
+             d:DesignHeight="200" d:DesignWidth="960">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="600"/>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="160"/>
+        </Grid.ColumnDefinitions>
+        <Border Background="#EDEDED">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="50"/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                    <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+                </Button>
 
-            <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
-                <ItemsControl>
-                    
-                </ItemsControl>
-            </ScrollViewer>
+                <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
+                    <ItemsControl>
+
+                    </ItemsControl>
+                </ScrollViewer>
+
+                <Button x:Name="btnCategoryRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                    <materialDesign:PackIcon Kind="ChevronRight" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
+                </Button>
+            </Grid>
+        </Border>
+        <Border Grid.Column="1" Background="Black">
             
-            <Button x:Name="btnCategoryRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
-                <materialDesign:PackIcon Kind="ChevronRight" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
-            </Button>
-        </Grid>
-    </Border>
+        </Border>
+        <Border Grid.Column="2" Background="#13AAF5">
+            
+        </Border>
+    </Grid>
 </UserControl>

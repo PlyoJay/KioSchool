@@ -45,6 +45,8 @@
             <classes:SelectedToForegroundConverter x:Key="SelectedToForegroundConverter"
                                          SelectedBrush="White" UnselectedBrush="Black"/>
             <classes:PriceToStringConverter x:Key="PriceToStringConverter"/>
+            <classes:EnumEqualityConverter x:Key="EnumEqualityConverter"/>
+            <classes:EnumEqualityMultiConverter x:Key="EnumEqualityMultiConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

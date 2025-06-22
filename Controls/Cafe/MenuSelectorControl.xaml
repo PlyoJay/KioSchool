@@ -78,7 +78,10 @@
                         <DataTemplate>
                             <Button HorizontalAlignment="Center" VerticalAlignment="Center"
                                     Width="140" Height="150" Padding="0"
-                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch">
+                                    HorizontalContentAlignment="Stretch" VerticalContentAlignment="Stretch"
+                                    Command="{Binding DataContext.OpenOptionDialogCommand,
+                                                RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                    CommandParameter="{Binding }">
                                 <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                                     <Grid.RowDefinitions>
                                         <RowDefinition Height="30"/>

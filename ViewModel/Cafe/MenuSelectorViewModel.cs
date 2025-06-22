@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using KioSchool.Controls;
 using KioSchool.Models;
+using KioSchool.View.Popups.Cafe;
 
 namespace KioSchool.ViewModel
 {
@@ -34,7 +35,7 @@ namespace KioSchool.ViewModel
         }
 
         public ICommand ChangeCateogryCommand { get; }
-        public ICommand AddDrinkToBasketCommand { get; }
+        public ICommand OpenOptionDialogCommand { get; }
 
 
         public MenuSelectorViewModel(BasketViewModel basketVM)
@@ -42,7 +43,7 @@ namespace KioSchool.ViewModel
             _basketViewModel = basketVM;
 
             ChangeCateogryCommand = new RelayCommand(ChangeCategory);
-            AddDrinkToBasketCommand = new RelayCommand(AddDrinkToBasket);
+            OpenOptionDialogCommand = new RelayCommand<Drink>(OpenOptionDialog);
 
             CategoryItems = new ObservableCollection<Category>()
             {
@@ -69,9 +70,16 @@ namespace KioSchool.ViewModel
             }
         }
 
-        private void AddDrinkToBasket(object obj)
+        private void OpenOptionDialog(Drink drink)
         {
-            
+            var dialogVM = new OptionsDialogViewModel(drink);
+            var dialog = new OptionsPopup { DataContext = dialogVM };
+
+            if (dialog.ShowDialog() == true)
+            {
+                var basketItem = dialogVM.ToBasketItem();
+                _basketViewModel.AddDrink(basketItem);
+            }
         }
 
         private ObservableCollection<Drink> SetCoffeeList()

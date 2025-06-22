@@ -4,6 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
 using System.Windows.Media;
 
@@ -60,4 +61,39 @@ namespace KioSchool.Classes
             return 0;
         }
     }
+
+    public class EnumEqualityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            return value?.Equals(parameter) == true;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if ((bool)value)
+                return parameter!;
+            return Binding.DoNothing;
+        }
+    }
+
+    public class EnumEqualityMultiConverter : IMultiValueConverter
+    {
+        public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (values.Length < 2) return false;
+            return Equals(values[0], values[1]);
+        }
+
+        public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
+        {
+            // values[1]을 직접 접근할 수 없으므로 Tag 값을 parameter로 넘겨줘야 함
+            if ((bool)value && parameter != null)
+                return new object[] { parameter, Binding.DoNothing };
+
+            return new object[] { Binding.DoNothing, Binding.DoNothing };
+        }
+    }
+
+
 }

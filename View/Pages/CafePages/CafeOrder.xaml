@@ -6,9 +6,14 @@
       xmlns:local="clr-namespace:KioSchool.View.Pages.CafePages"
       xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
       xmlns:controls="clr-namespace:KioSchool.Controls.Cafe"
+      xmlns:vm="clr-namespace:KioSchool.ViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="895" d:DesignWidth="960"
       Title="CafeOrder">
+
+    <Page.DataContext>
+        <vm:OrderViewModel/>
+    </Page.DataContext>
 
     <Grid>
         <Grid.RowDefinitions>
@@ -20,23 +25,10 @@
             
         </Grid>
         <Grid Grid.Row="1">
-            <controls:MenuSelectorControl/>
+            <controls:MenuSelectorControl DataContext="{Binding MenuSelectorVM}"/>
         </Grid>
         <Grid Grid.Row="2">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition MinWidth="600"/>
-                <ColumnDefinition Width="200"/>
-                <ColumnDefinition Width="160"/>
-            </Grid.ColumnDefinitions>
-            <Grid>
-                
-            </Grid>
-            <Grid Grid.Column="1">
-                
-            </Grid>
-            <Grid Grid.Column="2">
-                
-            </Grid>
+            <controls:BasketControl DataContext="{Binding BasketVM}"/>
         </Grid>
     </Grid>
 </Page>

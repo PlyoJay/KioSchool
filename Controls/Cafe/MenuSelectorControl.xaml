@@ -9,10 +9,6 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="960">
 
-    <UserControl.DataContext>
-        <vm:MenuSelectorViewModel/>
-    </UserControl.DataContext>
-    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70"/>

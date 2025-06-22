@@ -15,6 +15,8 @@ namespace KioSchool.ViewModel
 {
     public class MenuSelectorViewModel : INotifyPropertyChanged
     {
+        private readonly BasketViewModel _basketViewModel;
+
         public ObservableCollection<Category> CategoryItems { get; set; }
 
         private Category _selectedCategory;
@@ -35,8 +37,10 @@ namespace KioSchool.ViewModel
         public ICommand AddDrinkToBasketCommand { get; }
 
 
-        public MenuSelectorViewModel()
+        public MenuSelectorViewModel(BasketViewModel basketVM)
         {
+            _basketViewModel = basketVM;
+
             ChangeCateogryCommand = new RelayCommand(ChangeCategory);
             AddDrinkToBasketCommand = new RelayCommand(AddDrinkToBasket);
 
@@ -67,7 +71,7 @@ namespace KioSchool.ViewModel
 
         private void AddDrinkToBasket(object obj)
         {
-            throw new NotImplementedException();
+            
         }
 
         private ObservableCollection<Drink> SetCoffeeList()

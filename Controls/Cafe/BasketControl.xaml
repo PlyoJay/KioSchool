@@ -21,17 +21,34 @@
                     <ColumnDefinition/>
                     <ColumnDefinition Width="50"/>
                 </Grid.ColumnDefinitions>
-                <Button x:Name="btnCategoryLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <Button x:Name="btnBasketLeft" Height="70" Width="50" Background="Transparent" BorderThickness="0">
                     <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
                 </Button>
 
                 <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
                     <ItemsControl>
-
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel x:Name="spBasket" Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Border>
+                                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="35"/>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="35"/>
+                                        </Grid.RowDefinitions>
+                                    </Grid>
+                                </Border>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
                     </ItemsControl>
                 </ScrollViewer>
 
-                <Button x:Name="btnCategoryRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
+                <Button x:Name="btnBasketRight" Grid.Column="2" Height="70" Width="50" Background="Transparent" BorderThickness="0">
                     <materialDesign:PackIcon Kind="ChevronRight" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
                 </Button>
             </Grid>

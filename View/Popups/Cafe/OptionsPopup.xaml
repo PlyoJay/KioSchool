@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioSchool.View.Popups.Cafe"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:KioSchool.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:OptionsDialogViewModel}"
         mc:Ignorable="d"
         Title="OptionsPopup" Height="880" Width="760">
     <Grid>
@@ -20,23 +20,49 @@
         <Image Source="{Binding Drink.DrinkImage}" Width="150" Height="180"
                HorizontalAlignment="Right" Margin="20 0"/>
 
+        <Border Grid.Row="0" BorderThickness="0 0 0 1" BorderBrush="LightGray"/>
+
         <StackPanel Grid.Row="1">
-            <ItemsControl ItemsSource="{Binding Drink.DrinkTemperatures}">
+            <ItemsControl ItemsSource="{Binding Drink.Temperatures}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal"/>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
                 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton Content="{Binding}" GroupName="SizeGroup" Tag="{Binding}">
+                        <RadioButton Content="{Binding}" GroupName="TempGroup" Tag="{Binding}"
+                                     Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                     Height="50" Width="130" Margin="15">
                             <RadioButton.IsChecked>
                                 <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}" Mode="TwoWay">
-                                    <!-- 0: 현재 선택값 -->
+                                    <Binding Path="DataContext.SelectedTemperature"
+                                             RelativeSource="{RelativeSource AncestorType=Window}" />
+                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
+                                </MultiBinding>
+                            </RadioButton.IsChecked>
+                        </RadioButton>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+
+            <ItemsControl ItemsSource="{Binding Drink.Sizes}">
+                <ItemsControl.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center"/>
+                    </ItemsPanelTemplate>
+                </ItemsControl.ItemsPanel>
+
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <RadioButton Content="{Binding}" GroupName="SizeGroup" Tag="{Binding}"
+                                     Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
+                                     Height="50" Width="130" Margin="15">
+                            <RadioButton.IsChecked>
+                                <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}" Mode="TwoWay">
                                     <Binding Path="DataContext.SelectedSize"
                                              RelativeSource="{RelativeSource AncestorType=Window}" />
-                                    <!-- 1: 현재 항목(Tag) -->
                                     <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
                                 </MultiBinding>
                             </RadioButton.IsChecked>
@@ -50,11 +76,21 @@
             <Label Content="수량" FontSize="20" Margin="20 0" VerticalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" Margin="100 0 0 0">
-                <materialDesign:PackIcon Kind="MinusCircle" Width="27" Height="27"
-                        VerticalAlignment="Center" Margin="0 0 15 0"/>
+                <Button Command="{Binding MinusCommand}"
+                        Width="27" Height="27" Padding="0"
+                        VerticalAlignment="Center" Margin="0 0 15 0">
+                    <materialDesign:PackIcon Kind="MinusCircle"/>
+                </Button>
+                
+                
                 <Label Content="{Binding Count}" VerticalAlignment="Center"/>
-                <materialDesign:PackIcon Kind="PlusCircle" Width="27" Height="27"
-                        VerticalAlignment="Center" Margin="15 0 0 0"/>
+
+                <Button Command="{Binding PlusCommand}"
+                        Width="27" Height="27" Padding="0"
+                        VerticalAlignment="Center" Margin="15 0 0 0">
+                    <materialDesign:PackIcon Kind="PlusCircle"/>
+                </Button>
+                
             </StackPanel>
             
 

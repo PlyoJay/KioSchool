@@ -50,7 +50,7 @@ namespace KioSchool.Models
         public double Price { get; set; }
         public DrinkType DrinkType { get; set; }
         public List<DrinkSize> Sizes { get; set; }
-        public List<DrinkTemperature> DrinkTemperatures { get; set; }
+        public List<DrinkTemperature> Temperatures { get; set; }
         public string DrinkImage { get; set; }
 
         public Drink(int id, string name, double price, 
@@ -63,7 +63,7 @@ namespace KioSchool.Models
             Price = price;
             DrinkType = drink;
             Sizes = drinkSizes;
-            DrinkTemperatures = drinkTemperatures;
+            Temperatures = drinkTemperatures;
             DrinkImage = drinkImageSource;
         }
     }

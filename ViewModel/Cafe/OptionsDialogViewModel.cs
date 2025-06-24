@@ -18,6 +18,22 @@ namespace KioSchool.ViewModel
         public DrinkSize SelectedSize { get; set; }
         public DrinkTemperature SelectedTemperature { get; set; }
 
+        private int _count = 1;
+        public int Count
+        {
+            get => _count;
+            set
+            {
+                if (_count != value)
+                {
+                    _count = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        public ICommand MinusCommand { get; }
+        public ICommand PlusCommand { get; }
         public ICommand OkCommand { get; }
         public ICommand CancelCommand { get; }
 
@@ -25,10 +41,25 @@ namespace KioSchool.ViewModel
         {
             Drink = drink;
             SelectedSize = drink.Sizes.First();
-            SelectedTemperature = drink.DrinkTemperatures.First();
+            SelectedTemperature = drink.Temperatures.First();
 
+            MinusCommand = new RelayCommand(MinusCount);
+            PlusCommand = new RelayCommand(PlusCount);
             //OkCommand = new RelayCommand<Window>(w => Close(w, true));
             //CancelCommand = new RelayCommand<Window>(w => Close(w, false));
+        }
+
+        private void PlusCount(object obj)
+        {
+            Count++;
+        }
+
+        private void MinusCount(object obj)
+        {
+            if (Count == 1)
+                return;
+
+            Count--;
         }
 
         private void Close(Window w, bool result)

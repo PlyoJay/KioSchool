@@ -89,7 +89,7 @@ namespace KioSchool.ViewModel
                 new(1, "아메리카노", 1600, DrinkType.Coffee, 
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
                     new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
-                    ""),
+                    "/Resources/Images/Cafe/IcedAmericano.png"),
                 new(1, "카페라떼", 1900, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
                     new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},

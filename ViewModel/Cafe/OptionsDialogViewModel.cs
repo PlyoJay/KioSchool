@@ -28,9 +28,13 @@ namespace KioSchool.ViewModel
                 {
                     _count = value;
                     OnPropertyChanged();
+                    OnPropertyChanged(nameof(TotalPrice));
                 }
             }
         }
+
+        public int TotalPrice => Count * Drink.Price;
+
 
         public ICommand MinusCommand { get; }
         public ICommand PlusCommand { get; }
@@ -51,15 +55,23 @@ namespace KioSchool.ViewModel
 
         private void PlusCount(object obj)
         {
+            if (Count >= 99)
+                return;
+
             Count++;
         }
 
         private void MinusCount(object obj)
         {
-            if (Count == 1)
+            if (Count <= 1)
                 return;
 
             Count--;
+        }
+
+        private void CalculateTotalPrice()
+        {
+            int totalPrice = Count * Drink.Price;
         }
 
         private void Close(Window w, bool result)

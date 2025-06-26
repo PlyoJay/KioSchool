@@ -47,13 +47,13 @@ namespace KioSchool.Models
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
-        public double Price { get; set; }
+        public int Price { get; set; }
         public DrinkType DrinkType { get; set; }
         public List<DrinkSize> Sizes { get; set; }
         public List<DrinkTemperature> Temperatures { get; set; }
         public string DrinkImage { get; set; }
 
-        public Drink(int id, string name, double price, 
+        public Drink(int id, string name, int price, 
             DrinkType drink, List<DrinkSize> drinkSizes, 
             List<DrinkTemperature> drinkTemperatures, 
             string drinkImageSource)

@@ -42,9 +42,10 @@ namespace KioSchool.Classes
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (value is double d)
+            if (value is int d)
             {
-                return d.ToString(@"\#,#", CultureInfo.InvariantCulture).Replace("#", "₩");
+                // "N0"은 소수점 없이 천 단위 쉼표 포함 형식
+                return $"₩{d.ToString("N0", culture)}";
             }
 
             return value;
@@ -53,7 +54,7 @@ namespace KioSchool.Classes
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             var str = value?.ToString()?.Replace("₩", "").Replace(",", "");
-            if (double.TryParse(str, out double result))
+            if (double.TryParse(str, NumberStyles.Any, culture, out double result))
             {
                 return result;
             }
@@ -61,6 +62,7 @@ namespace KioSchool.Classes
             return 0;
         }
     }
+
 
     public class EnumEqualityConverter : IValueConverter
     {

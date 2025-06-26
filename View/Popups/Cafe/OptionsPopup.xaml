@@ -73,7 +73,8 @@
         </StackPanel>
 
         <Grid Grid.Row="2">
-            <Label Content="수량" FontSize="20" Margin="20 0" VerticalAlignment="Center"/>
+            <Label Content="수량" FontSize="20" FontWeight="Bold"
+                   Margin="20 0" VerticalAlignment="Center"/>
 
             <StackPanel Orientation="Horizontal" Margin="100 0 0 0">
                 <Button Command="{Binding MinusCommand}"
@@ -83,7 +84,8 @@
                 </Button>
                 
                 
-                <Label Content="{Binding Count}" VerticalAlignment="Center"/>
+                <Label Content="{Binding Count}" VerticalAlignment="Center"
+                       FontSize="18"/>
 
                 <Button Command="{Binding PlusCommand}"
                         Width="27" Height="27" Padding="0"
@@ -95,7 +97,8 @@
             
 
             <Label Content="{Binding TotalPrice, Converter={StaticResource PriceToStringConverter}}"
-                   HorizontalAlignment="Right"/>
+                   HorizontalAlignment="Right" Margin="20 0"
+                   FontSize="20" FontWeight="Bold"/>
         </Grid>
     </Grid>
 </Window>

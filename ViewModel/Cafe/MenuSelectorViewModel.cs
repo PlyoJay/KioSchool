@@ -78,7 +78,7 @@ namespace KioSchool.ViewModel
             if (dialog.ShowDialog() == true)
             {
                 var basketItem = dialogVM.ToBasketItem();
-                _basketViewModel.AddDrink(basketItem);
+                _basketViewModel.AddDrink(basketItem, basketItem.Count);
             }
         }
 

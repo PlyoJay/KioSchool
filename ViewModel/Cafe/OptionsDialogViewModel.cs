@@ -15,8 +15,34 @@ namespace KioSchool.ViewModel
     public class OptionsDialogViewModel : INotifyPropertyChanged
     {
         public Drink Drink { get; }
-        public DrinkSize SelectedSize { get; set; }
-        public DrinkTemperature SelectedTemperature { get; set; }
+
+        private DrinkSize _selectedSize;
+        public DrinkSize SelectedSize
+        {
+            get => _selectedSize;
+            set
+            {
+                if (_selectedSize != value)
+                {
+                    _selectedSize = value;
+                    OnPropertyChanged(nameof(SelectedSize));
+                }
+            }
+        }
+
+        private DrinkTemperature _selectedTemperature;
+        public DrinkTemperature SelectedTemperature
+        {
+            get => _selectedTemperature;
+            set
+            {
+                if (_selectedTemperature != value)
+                {
+                    _selectedTemperature = value;
+                    OnPropertyChanged(nameof(SelectedTemperature));
+                }
+            }
+        }
 
         private int _count = 1;
         public int Count
@@ -35,11 +61,12 @@ namespace KioSchool.ViewModel
 
         public int TotalPrice => Count * Drink.Price;
 
-
+        public ICommand SelectTemperatureCommand { get; }
+        public ICommand SelectSizeCommand { get; }
         public ICommand MinusCommand { get; }
         public ICommand PlusCommand { get; }
-        public ICommand OkCommand { get; }
         public ICommand CancelCommand { get; }
+        public ICommand ConfirmCommand { get; }
 
         public OptionsDialogViewModel(Drink drink)
         {
@@ -47,10 +74,12 @@ namespace KioSchool.ViewModel
             SelectedSize = drink.Sizes.First();
             SelectedTemperature = drink.Temperatures.First();
 
+            SelectTemperatureCommand = new RelayCommand(temp => SelectedTemperature = (DrinkTemperature)temp);
+            SelectSizeCommand = new RelayCommand(size => SelectedSize = (DrinkSize)size);
             MinusCommand = new RelayCommand(MinusCount);
             PlusCommand = new RelayCommand(PlusCount);
-            //OkCommand = new RelayCommand<Window>(w => Close(w, true));
-            //CancelCommand = new RelayCommand<Window>(w => Close(w, false));
+            CancelCommand = new RelayCommand<Window>(w => Close(w, false), w => w != null);
+            ConfirmCommand = new RelayCommand<Window>(w => Close(w, true), w => w != null);
         }
 
         private void PlusCount(object obj)
@@ -81,13 +110,13 @@ namespace KioSchool.ViewModel
         }
 
         /* BasketItem 생성기 */
-        public BasketItem ToBasketItem(int count = 1) =>
+        public BasketItem ToBasketItem() =>
             new()
             {
                 Drink = Drink,
                 Size = SelectedSize,
                 Temperature = SelectedTemperature,
-                Count = count
+                Count = this.Count
             };
 
         public event PropertyChangedEventHandler? PropertyChanged;

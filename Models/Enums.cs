@@ -23,8 +23,8 @@ namespace KioSchool.Models
 
     public enum DrinkSize
     {
-        Regular,
-        Large
+        Regular = 0,
+        Large = 500
     }
 
     public enum DrinkTemperature

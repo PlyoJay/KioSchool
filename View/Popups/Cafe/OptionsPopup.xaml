@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:KioSchool.View.Popups.Cafe"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:KioSchool.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:OptionsDialogViewModel}"
         mc:Ignorable="d"
-        Title="OptionsPopup" Height="880" Width="760">
-    <Grid>
+        Title="OptionsPopup" Height="880" Width="660">
+    <Grid Cursor="">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>
             <RowDefinition/>
@@ -34,15 +34,9 @@
                     <DataTemplate>
                         <RadioButton Content="{Binding}" GroupName="TempGroup" Tag="{Binding}"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                     Height="50" Width="130" Margin="15">
-                            <RadioButton.IsChecked>
-                                <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}" Mode="TwoWay">
-                                    <Binding Path="DataContext.SelectedTemperature"
-                                             RelativeSource="{RelativeSource AncestorType=Window}" />
-                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
-                                </MultiBinding>
-                            </RadioButton.IsChecked>
-                        </RadioButton>
+                                     Height="50" Width="130" Margin="15"
+                                     Command="{Binding DataContext.SelectTemperatureCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                     CommandParameter="{Binding}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -58,15 +52,9 @@
                     <DataTemplate>
                         <RadioButton Content="{Binding}" GroupName="SizeGroup" Tag="{Binding}"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
-                                     Height="50" Width="130" Margin="15">
-                            <RadioButton.IsChecked>
-                                <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}" Mode="TwoWay">
-                                    <Binding Path="DataContext.SelectedSize"
-                                             RelativeSource="{RelativeSource AncestorType=Window}" />
-                                    <Binding Path="Tag" RelativeSource="{RelativeSource Self}" />
-                                </MultiBinding>
-                            </RadioButton.IsChecked>
-                        </RadioButton>
+                                     Height="50" Width="130" Margin="15"
+                                     Command="{Binding DataContext.SelectSizeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                     CommandParameter="{Binding}"/>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -100,5 +88,18 @@
                    HorizontalAlignment="Right" Margin="20 0"
                    FontSize="20" FontWeight="Bold"/>
         </Grid>
+
+        <StackPanel Grid.Row="3" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0 10">
+            <Button Command="{Binding CancelCommand}"
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                    Content="취소"
+                    Style="{StaticResource MaterialDesignOutlinedButton}"
+                    Margin="0 0 30 0" Width="150" Height="50"/>
+            <Button Command="{Binding ConfirmCommand}" 
+                    CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=Window}}"
+                    Content="선택완료"
+                    Style="{StaticResource MaterialDesignFlatDarkBgButton}"
+                    Width="150" Height="50" Cursor="Hand"/>
+        </StackPanel>
     </Grid>
 </Window>

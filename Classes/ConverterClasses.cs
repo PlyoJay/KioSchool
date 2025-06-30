@@ -64,17 +64,18 @@ namespace KioSchool.Classes
     }
 
 
-    public class EnumEqualityConverter : IValueConverter
+    public class EnumEqualsConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            return value?.Equals(parameter) == true;
+            return Equals(value, parameter);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             if ((bool)value)
-                return parameter!;
+                return parameter;
+
             return Binding.DoNothing;
         }
     }

@@ -32,7 +32,7 @@
                 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton Content="{Binding}" GroupName="TempGroup" Tag="{Binding}"
+                        <RadioButton Content="{Binding Path=., Converter={StaticResource EnumToKoreanConverter}}" GroupName="TempGroup" Tag="{Binding}"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
                                      Height="50" Width="130" Margin="15"
                                      Command="{Binding DataContext.SelectTemperatureCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
@@ -50,7 +50,7 @@
 
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
-                        <RadioButton Content="{Binding}" GroupName="SizeGroup" Tag="{Binding}"
+                        <RadioButton Content="{Binding Path=., Converter={StaticResource EnumToKoreanConverter}}" GroupName="SizeGroup" Tag="{Binding}"
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
                                      Height="50" Width="130" Margin="15"
                                      Command="{Binding DataContext.SelectSizeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KioSchool.Models;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -98,5 +99,25 @@ namespace KioSchool.Classes
         }
     }
 
+    public class EnumToKoreanConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value == null)
+                return string.Empty;
 
+            if (Enums.GetEnumKor().TryGetValue((Enum)value, out string koreanName))
+            {
+                return koreanName;
+            }
+
+            // 딕셔너리에 없을 경우 기본적으로 Enum 이름을 문자열로 반환
+            return value.ToString();
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException("ConvertBack is not implemented.");
+        }
+    }
 }

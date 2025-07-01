@@ -47,6 +47,7 @@
             <classes:PriceToStringConverter x:Key="PriceToStringConverter"/>
             <classes:EnumEqualsConverter x:Key="EnumEqualsConverter"/>
             <classes:EnumEqualityMultiConverter x:Key="EnumEqualityMultiConverter"/>
+            <classes:EnumToKoreanConverter x:Key="EnumToKoreanConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

@@ -134,6 +134,6 @@ namespace KioSchool.Models
         public DrinkSize Size { get; set; }
         public DrinkTemperature Temperature { get; set; }
         public int Count { get; set; }
-        public int TotalPrice => (int)Drink.Price * Count;
+        public int TotalPrice => Count * (Drink.Price + (int)Size);
     }
 }

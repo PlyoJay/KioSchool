@@ -46,7 +46,7 @@ namespace KioSchool.Classes
             if (value is int d)
             {
                 // "N0"은 소수점 없이 천 단위 쉼표 포함 형식
-                return $"₩{d.ToString("N0", culture)}";
+                return $"₩ {d.ToString("N0", culture)}";
             }
 
             return value;

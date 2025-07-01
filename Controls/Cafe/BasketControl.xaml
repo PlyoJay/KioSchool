@@ -11,8 +11,8 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition MinWidth="600"/>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="160"/>
+            <ColumnDefinition Width="150"/>
+            <ColumnDefinition Width="180"/>
         </Grid.ColumnDefinitions>
         <Border Background="#EDEDED">
             <Grid>
@@ -80,7 +80,10 @@
             </Grid>
         </Border>
         <Border Grid.Column="1" Background="Black">
-            
+            <StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0">
+                <Label Content="총 결제 금액" FontSize="16" Foreground="Yellow" Margin="0 0 0 5"/>
+                <Label Content="{Binding TotalPrice, Converter={StaticResource PriceToStringConverter}}" FontSize="22" Foreground="Yellow"/>
+            </StackPanel>
         </Border>
         <Border Grid.Column="2" Background="#13AAF5">
             

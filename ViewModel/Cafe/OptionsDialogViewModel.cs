@@ -25,7 +25,8 @@ namespace KioSchool.ViewModel
                 if (_selectedSize != value)
                 {
                     _selectedSize = value;
-                    OnPropertyChanged(nameof(SelectedSize));
+                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TotalPrice));
                 }
             }
         }
@@ -39,7 +40,7 @@ namespace KioSchool.ViewModel
                 if (_selectedTemperature != value)
                 {
                     _selectedTemperature = value;
-                    OnPropertyChanged(nameof(SelectedTemperature));
+                    OnPropertyChanged();
                 }
             }
         }
@@ -59,7 +60,7 @@ namespace KioSchool.ViewModel
             }
         }
 
-        public int TotalPrice => Count * Drink.Price;
+        public int TotalPrice => Count * (Drink.Price + (int)SelectedSize);
 
         public ICommand SelectTemperatureCommand { get; }
         public ICommand SelectSizeCommand { get; }
@@ -96,11 +97,6 @@ namespace KioSchool.ViewModel
                 return;
 
             Count--;
-        }
-
-        private void CalculateTotalPrice()
-        {
-            int totalPrice = Count * Drink.Price;
         }
 
         private void Close(Window w, bool result)

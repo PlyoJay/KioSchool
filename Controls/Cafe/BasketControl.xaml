@@ -42,6 +42,12 @@
                                             <RowDefinition/>
                                             <RowDefinition Height="35"/>
                                         </Grid.RowDefinitions>
+                                        <Button Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding}"
+                                                Width="20" Height="20" Padding="0"
+                                                VerticalAlignment="Top" HorizontalAlignment="Right" Margin="-7">
+                                            <materialDesign:PackIcon Kind="CloseCircle"/>
+                                        </Button>
                                         <StackPanel>
                                             <Label Content="{Binding Drink.Name}" FontSize="16" 
                                                    FontWeight="Bold" Margin="2 0"/>

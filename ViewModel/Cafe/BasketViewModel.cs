@@ -20,6 +20,7 @@ namespace KioSchool.ViewModel
 
         public ICommand MinusCommand { get; }
         public ICommand PlusCommand { get; }
+        public ICommand RemoveCommand { get; }
 
         public BasketViewModel()
         {
@@ -38,6 +39,16 @@ namespace KioSchool.ViewModel
                 {
                     item.Count = Math.Min(99, item.Count + 1);
                     AddDrink(item, item.Count);
+                }
+            });
+
+            RemoveCommand = new RelayCommand(obj =>
+            {
+                if (obj is BasketItem item)
+                {
+                    Basket.Items.Remove(item);
+                    OnPropertyChanged(nameof(Items));
+                    OnPropertyChanged(nameof(TotalPrice));
                 }
             });
         }

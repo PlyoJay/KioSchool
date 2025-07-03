@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KioSchool.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,6 +7,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace KioSchool.Models
 {
@@ -87,7 +89,7 @@ namespace KioSchool.Models
             }
             else
             {
-                existingItem.Count += count;
+                existingItem.Count = count;
             }
         }
 
@@ -128,12 +130,32 @@ namespace KioSchool.Models
         }
     }
 
-    public class BasketItem
+    public class BasketItem : INotifyPropertyChanged
     {
         public Drink Drink { get; set; }
         public DrinkSize Size { get; set; }
         public DrinkTemperature Temperature { get; set; }
-        public int Count { get; set; }
+
+        private int _count;
+        public int Count
+        {
+            get => _count;
+            set
+            {
+                if (_count != value)
+                {
+                    _count = value;
+                    OnPropertyChanged(nameof(Count));
+                    OnPropertyChanged(nameof(TotalPrice));
+                }
+            }
+        }
+
         public int TotalPrice => Count * (Drink.Price + (int)Size);
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyChanged(string name) =>
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
     }
+
 }

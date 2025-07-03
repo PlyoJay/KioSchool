@@ -1,4 +1,5 @@
-﻿using KioSchool.Models;
+﻿using KioSchool.Controls;
+using KioSchool.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -7,6 +8,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace KioSchool.ViewModel
 {
@@ -16,9 +18,40 @@ namespace KioSchool.ViewModel
 
         public ObservableCollection<BasketItem> Items => Basket.Items;
 
+        public ICommand MinusCommand { get; }
+        public ICommand PlusCommand { get; }
+
+        public BasketViewModel()
+        {
+            MinusCommand = new RelayCommand(obj =>
+            {
+                if (obj is BasketItem item)
+                {
+                    item.Count = Math.Max(1, item.Count - 1);
+                    DecreaseDrink(item, item.Count);
+                }
+            });
+
+            PlusCommand = new RelayCommand(obj =>
+            {
+                if (obj is BasketItem item)
+                {
+                    item.Count = Math.Min(99, item.Count + 1);
+                    AddDrink(item, item.Count);
+                }
+            });
+        }
+
         public void AddDrink(BasketItem item, int count = 1)
         {
             Basket.AddDrink(item, count);
+            OnPropertyChanged(nameof(Items));
+            OnPropertyChanged(nameof(TotalPrice));
+        }
+
+        public void DecreaseDrink(BasketItem item, int count = 1)
+        {
+            Basket.DecreaseDrink(item, count);
             OnPropertyChanged(nameof(Items));
             OnPropertyChanged(nameof(TotalPrice));
         }

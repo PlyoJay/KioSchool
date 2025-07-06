@@ -62,6 +62,7 @@ namespace KioSchool.ViewModel.Cafe
 
                 clickedCategory.IsSelected = true;
                 SelectedCategory = clickedCategory;
+                _drinkSelectionViewModel.SelectedCategory = SelectedCategory;
             }
         }
 

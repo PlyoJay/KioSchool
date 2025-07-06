@@ -17,11 +17,11 @@
             <materialDesign:PackIcon Kind="ChevronLeft" Height="70" Width="50" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="Black"/>
         </Button>
 
-        <ScrollViewer Grid.Column="1" VerticalScrollBarVisibility="Disabled">
+        <ScrollViewer x:Name="svCategory" Grid.Column="1" VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Hidden">
             <ItemsControl ItemsSource="{Binding CategoryItems}">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <StackPanel x:Name="spCategory" Orientation="Horizontal"/>
+                        <VirtualizingStackPanel x:Name="spCategory" Orientation="Horizontal"/>
                         <!-- StackPanel 역할 -->
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>

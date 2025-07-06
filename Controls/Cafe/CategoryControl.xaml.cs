@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KioSchool.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,8 @@ namespace KioSchool.Controls.Cafe
         public CategoryControl()
         {
             InitializeComponent();
+            btnCategoryLeft.Click += (s, e) => svCategory.ScrollToHorizontalOffset(svCategory.HorizontalOffset - 100);
+            btnCategoryRight.Click += (s, e) => svCategory.ScrollToHorizontalOffset(svCategory.HorizontalOffset + 100);
         }
     }
 }

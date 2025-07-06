@@ -36,7 +36,14 @@
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
                                      Height="50" Width="130" Margin="15"
                                      Command="{Binding DataContext.SelectTemperatureCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                     CommandParameter="{Binding}"/>
+                                     CommandParameter="{Binding}">
+                            <RadioButton.IsChecked>
+                                <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}">
+                                    <Binding Path="." />
+                                    <Binding Path="DataContext.SelectedTemperature" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                </MultiBinding>
+                            </RadioButton.IsChecked>
+                        </RadioButton>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
@@ -54,7 +61,14 @@
                                      Style="{StaticResource MaterialDesignChoiceChipPrimaryOutlineRadioButton}"
                                      Height="50" Width="130" Margin="15"
                                      Command="{Binding DataContext.SelectSizeCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                     CommandParameter="{Binding}"/>
+                                     CommandParameter="{Binding}">
+                            <RadioButton.IsChecked>
+                                <MultiBinding Converter="{StaticResource EnumEqualityMultiConverter}">
+                                    <Binding Path="." />
+                                    <Binding Path="DataContext.SelectedSize" RelativeSource="{RelativeSource AncestorType=ItemsControl}" />
+                                </MultiBinding>
+                            </RadioButton.IsChecked>
+                        </RadioButton>
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>

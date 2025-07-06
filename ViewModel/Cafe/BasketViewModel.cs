@@ -18,6 +18,9 @@ namespace KioSchool.ViewModel
 
         public ObservableCollection<BasketItem> Items => Basket.Items;
 
+        public int TotalPrice => Basket.TotalPrice;
+        public int TotalCount => Basket.TotalCount;
+
         public ICommand MinusCommand { get; }
         public ICommand PlusCommand { get; }
         public ICommand RemoveCommand { get; }
@@ -57,6 +60,7 @@ namespace KioSchool.ViewModel
         {
             Basket.AddDrink(item, count);
             OnPropertyChanged(nameof(Items));
+            OnPropertyChanged(nameof(TotalCount));
             OnPropertyChanged(nameof(TotalPrice));
         }
 
@@ -64,10 +68,9 @@ namespace KioSchool.ViewModel
         {
             Basket.DecreaseDrink(item, count);
             OnPropertyChanged(nameof(Items));
+            OnPropertyChanged(nameof(TotalCount));
             OnPropertyChanged(nameof(TotalPrice));
         }
-
-        public int TotalPrice => Basket.TotalPrice;
 
         public event PropertyChangedEventHandler? PropertyChanged;
         private void OnPropertyChanged([CallerMemberName] string? name = null)

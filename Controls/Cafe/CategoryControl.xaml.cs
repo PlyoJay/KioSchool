@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace KioSchool.Controls.Cafe
 {
     /// <summary>
-    /// MenuSelectorControl.xaml에 대한 상호 작용 논리
+    /// CategoryControl.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class MenuSelectorControl : UserControl
+    public partial class CategoryControl : UserControl
     {
-        public MenuSelectorControl()
+        public CategoryControl()
         {
             InitializeComponent();
         }

@@ -18,17 +18,20 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="*"/>
-            <RowDefinition Height="200"/>
         </Grid.RowDefinitions>
-        <Grid>
-            
-        </Grid>
         <Grid Grid.Row="1">
-            <controls:MenuSelectorControl DataContext="{Binding MenuSelectorVM}"/>
+            <controls:CategoryControl DataContext="{Binding CategoryVM}"/>
         </Grid>
         <Grid Grid.Row="2">
-            <controls:BasketControl DataContext="{Binding BasketVM}"/>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition Width="320"/>
+            </Grid.ColumnDefinitions>
+            <controls:DrinkSelectionControl DataContext="{Binding DrinkSelectionVM}"/>
+            <controls:BasketControl Grid.Column="1" DataContext="{Binding BasketVM}"/>
+            <!--<controls:MenuSelectorControl DataContext="{Binding MenuSelectorVM}"/>-->
         </Grid>
     </Grid>
 </Page>

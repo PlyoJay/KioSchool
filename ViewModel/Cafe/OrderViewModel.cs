@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KioSchool.ViewModel.Cafe;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -10,13 +11,15 @@ namespace KioSchool.ViewModel
 {
     class OrderViewModel : INotifyPropertyChanged
     {
-        public MenuSelectorViewModel MenuSelectorVM { get; }
+        public CategoryViewModel CategoryVM { get; }
+        public DrinkSelectionViewModel DrinkSelectionVM { get; }
         public BasketViewModel BasketVM { get; }
 
         public OrderViewModel()
         {
             BasketVM = new BasketViewModel();
-            MenuSelectorVM = new MenuSelectorViewModel(BasketVM);
+            DrinkSelectionVM = new DrinkSelectionViewModel(BasketVM);
+            CategoryVM = new CategoryViewModel(DrinkSelectionVM);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

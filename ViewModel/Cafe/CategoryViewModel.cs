@@ -1,22 +1,20 @@
-﻿using System;
+﻿using KioSchool.Controls;
+using KioSchool.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using KioSchool.Controls;
-using KioSchool.Models;
-using KioSchool.View.Popups.Cafe;
 
-namespace KioSchool.ViewModel
+namespace KioSchool.ViewModel.Cafe
 {
-    public class MenuSelectorViewModel : INotifyPropertyChanged
+    public class CategoryViewModel : INotifyPropertyChanged
     {
-        private readonly BasketViewModel _basketViewModel;
+        public DrinkSelectionViewModel _drinkSelectionViewModel { get; set; }
 
         public ObservableCollection<Category> CategoryItems { get; set; }
 
@@ -35,15 +33,12 @@ namespace KioSchool.ViewModel
         }
 
         public ICommand ChangeCateogryCommand { get; }
-        public ICommand OpenOptionDialogCommand { get; }
 
-
-        public MenuSelectorViewModel(BasketViewModel basketVM)
+        public CategoryViewModel( DrinkSelectionViewModel drinkSelectionVM)
         {
-            _basketViewModel = basketVM;
+            _drinkSelectionViewModel = drinkSelectionVM;
 
             ChangeCateogryCommand = new RelayCommand(ChangeCategory);
-            OpenOptionDialogCommand = new RelayCommand<Drink>(OpenOptionDialog);
 
             CategoryItems = new ObservableCollection<Category>()
             {
@@ -55,7 +50,7 @@ namespace KioSchool.ViewModel
 
             SelectedCategory = CategoryItems.FirstOrDefault();
             SelectedCategory.IsSelected = true;
-            Debug.WriteLine($"DrinkList Count: {SelectedCategory.DrinkList.Count}");
+            _drinkSelectionViewModel.SelectedCategory = SelectedCategory;
         }
 
         private void ChangeCategory(object obj)
@@ -70,23 +65,11 @@ namespace KioSchool.ViewModel
             }
         }
 
-        private void OpenOptionDialog(Drink drink)
-        {
-            var dialogVM = new OptionsDialogViewModel(drink);
-            var dialog = new OptionsPopup { DataContext = dialogVM };
-
-            if (dialog.ShowDialog() == true)
-            {
-                var basketItem = dialogVM.ToBasketItem();
-                _basketViewModel.AddDrink(basketItem, basketItem.Count);
-            }
-        }
-
         private ObservableCollection<Drink> SetCoffeeList()
         {
             ObservableCollection<Drink> coffeeList = new ObservableCollection<Drink>()
             {
-                new(1, "아메리카노", 1600, DrinkType.Coffee, 
+                new(1, "아메리카노", 1600, DrinkType.Coffee,
                     new List<DrinkSize>{DrinkSize.Regular, DrinkSize.Large},
                     new List<DrinkTemperature>{DrinkTemperature.Iced, DrinkTemperature.Hot},
                     "/Resources/Images/Cafe/IcedAmericano.png"),

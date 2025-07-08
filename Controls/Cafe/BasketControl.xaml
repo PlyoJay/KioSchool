@@ -121,18 +121,24 @@
 
                 </StackPanel>
             </Grid>
-            <!--<StackPanel HorizontalAlignment="Right" VerticalAlignment="Center" Margin="5 0">
-                <TextBlock Foreground="Yellow" FontSize="22">
-                    <Run Text="총 수량 : "/>
-                    <Run Text="{Binding TotalCount}"/>
-                    <Run Text=" 개" />
-                </TextBlock>
-                --><!--<Label Content="총 결제 금액" FontSize="16" Foreground="Yellow" Margin="0 0 0 5"/>
-                <Label Content="{Binding TotalPrice, Converter={StaticResource PriceToStringConverter}}" FontSize="22" Foreground="Yellow"/>--><!--
-            </StackPanel>-->
         </Border>
-        <Border Grid.Row="3" Background="#13AAF5">
-            
-        </Border>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Button Command="{Binding RemoveAllCommand}"
+                    Background="#7F7F7F" BorderBrush="Transparent"
+                    Width="80" Height="80" Padding="0"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                <materialDesign:PackIcon Kind="TrashCan" Width="40" Height="40"/>
+            </Button>
+            <Button Grid.Column="1" Content="주문하기" FontSize="24" FontWeight="Bold"
+                    Command="{Binding OrderCommand}"
+                    Background="#BE1744" BorderBrush="Transparent"
+                    Height="80" Padding="0"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+
+        </Grid>
     </Grid>
 </UserControl>

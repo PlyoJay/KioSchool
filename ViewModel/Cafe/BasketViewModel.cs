@@ -24,6 +24,7 @@ namespace KioSchool.ViewModel
         public ICommand MinusCommand { get; }
         public ICommand PlusCommand { get; }
         public ICommand RemoveCommand { get; }
+        public ICommand RemoveAllCommand { get; }
 
         public BasketViewModel()
         {
@@ -54,6 +55,14 @@ namespace KioSchool.ViewModel
                     OnPropertyChanged(nameof(TotalPrice));
                     OnPropertyChanged(nameof(TotalCount));
                 }
+            });
+
+            RemoveAllCommand = new RelayCommand(obj =>
+            {
+                Items.Clear();
+                OnPropertyChanged(nameof(Items));
+                OnPropertyChanged(nameof(TotalCount));
+                OnPropertyChanged(nameof(TotalPrice));
             });
         }
 

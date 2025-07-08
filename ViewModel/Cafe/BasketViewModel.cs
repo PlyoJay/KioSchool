@@ -52,6 +52,7 @@ namespace KioSchool.ViewModel
                     Basket.Items.Remove(item);
                     OnPropertyChanged(nameof(Items));
                     OnPropertyChanged(nameof(TotalPrice));
+                    OnPropertyChanged(nameof(TotalCount));
                 }
             });
         }

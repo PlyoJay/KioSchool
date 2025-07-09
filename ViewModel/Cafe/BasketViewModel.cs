@@ -1,5 +1,6 @@
 ﻿using KioSchool.Controls;
 using KioSchool.Models;
+using KioSchool.View.Pages.CafePages;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,11 +10,14 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Navigation;
 
 namespace KioSchool.ViewModel
 {
     public class BasketViewModel : INotifyPropertyChanged
     {
+        private readonly NavigationService _navigationService;
+
         public Basket Basket { get; } = new();
 
         public ObservableCollection<BasketItem> Items => Basket.Items;
@@ -25,9 +29,12 @@ namespace KioSchool.ViewModel
         public ICommand PlusCommand { get; }
         public ICommand RemoveCommand { get; }
         public ICommand RemoveAllCommand { get; }
+        public ICommand ToHomeCommand { get; }
 
-        public BasketViewModel()
+        public BasketViewModel(NavigationService navigationService)
         {
+            _navigationService = navigationService;
+
             MinusCommand = new RelayCommand(obj =>
             {
                 if (obj is BasketItem item)
@@ -63,6 +70,11 @@ namespace KioSchool.ViewModel
                 OnPropertyChanged(nameof(Items));
                 OnPropertyChanged(nameof(TotalCount));
                 OnPropertyChanged(nameof(TotalPrice));
+            });
+
+            ToHomeCommand = new RelayCommand(obj =>
+            {
+                _navigationService.Navigate(new CafeHome());
             });
         }
 

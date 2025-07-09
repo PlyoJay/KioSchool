@@ -13,10 +13,10 @@
             <RowDefinition Height="50"/>
             <RowDefinition/>
             <RowDefinition Height="80"/>
-            <RowDefinition Height="80"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <Border Background="#D1D1D1">
+        <Border Background="#D1D1D1" BorderThickness="0 0 0 2" BorderBrush="#1F1F1F">
             <TextBlock Text="주문 내역" FontWeight="Bold" FontSize="26"
                        HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Border>
@@ -124,21 +124,28 @@
         </Border>
         <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="70"/>
                 <ColumnDefinition/>
             </Grid.ColumnDefinitions>
             <Button Command="{Binding RemoveAllCommand}"
                     Background="#7F7F7F" BorderBrush="Transparent"
-                    Width="80" Height="80" Padding="0"
+                    Width="70" Height="70" Padding="0"
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
                 <materialDesign:PackIcon Kind="TrashCan" Width="40" Height="40"/>
             </Button>
             <Button Grid.Column="1" Content="주문하기" FontSize="24" FontWeight="Bold"
                     Command="{Binding OrderCommand}"
                     Background="#BE1744" BorderBrush="Transparent"
-                    Height="80" Padding="0"
+                    Height="70" Padding="0"
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
 
+        </Grid>
+        <Grid Grid.Row="4">
+            <Button Content="처음으로" FontSize="24" FontWeight="Bold"
+                    Command="{Binding ToHomeCommand}"
+                    Background="#3F3F3F" BorderBrush="Transparent"
+                    Height="70" Padding="0"
+                    VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
         </Grid>
     </Grid>
 </UserControl>

@@ -22,7 +22,7 @@ namespace KioSchool.Controls.Cafe
     {
         public BasketControl()
         {
-            InitializeComponent();
+            InitializeComponent();       
         }
     }
 }

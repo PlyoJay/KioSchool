@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace KioSchool.ViewModel
 {
@@ -15,11 +16,11 @@ namespace KioSchool.ViewModel
         public DrinkSelectionViewModel DrinkSelectionVM { get; }
         public BasketViewModel BasketVM { get; }
 
-        public OrderViewModel()
+        public OrderViewModel(BasketViewModel basketVM, DrinkSelectionViewModel drinkSelectionVM, CategoryViewModel categoryVM)
         {
-            BasketVM = new BasketViewModel();
-            DrinkSelectionVM = new DrinkSelectionViewModel(BasketVM);
-            CategoryVM = new CategoryViewModel(DrinkSelectionVM);
+            BasketVM = basketVM;
+            DrinkSelectionVM = drinkSelectionVM;
+            CategoryVM = categoryVM;
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

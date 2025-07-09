@@ -100,7 +100,7 @@ namespace KioSchool.Models
             if (existingItem == null)
                 return;
 
-            existingItem.Count -= count;
+            existingItem.Count = count;
 
             // 0 이하인 경우 삭제
             if (existingItem.Count <= 0)

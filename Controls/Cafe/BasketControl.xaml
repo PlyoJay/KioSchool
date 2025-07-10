@@ -11,7 +11,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition/>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="70"/>
             <RowDefinition Height="70"/>
@@ -22,78 +22,83 @@
         </Border>
         
         <Border Background="#EDEDED" Grid.Row="1">
-            <Grid>
-                <ScrollViewer VerticalScrollBarVisibility="Disabled" HorizontalScrollBarVisibility="Auto">
-                    <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <VirtualizingStackPanel x:Name="spBasket" Orientation="Vertical"/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Border BorderBrush="#1F1F1F" BorderThickness="1" 
-                                        Width="300" Height="120" Margin="10"
-                                        Background="White"
-                                        HorizontalAlignment="Center">
-                                    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="80"/>
-                                            <ColumnDefinition/>
-                                        </Grid.ColumnDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Hidden"
+                          HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <ScrollViewer.Resources>
+                    <Style TargetType="ScrollBar">
+                        <Setter Property="Foreground" Value="Black"/>
+                        <Setter Property="Width" Value="6"/>
+                    </Style>
+                </ScrollViewer.Resources>
+                <ItemsControl ItemsSource="{Binding Items}" HorizontalAlignment="Stretch">
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <StackPanel x:Name="spBasket" Orientation="Vertical" VerticalAlignment="Stretch"/>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderBrush="#1F1F1F" BorderThickness="1" 
+                                    Width="280" Height="120" Margin="10"
+                                    Background="White"
+                                    HorizontalAlignment="Center">
+                                <Grid VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
 
-                                        <Grid>
-                                            <Image Source="{Binding Drink.DrinkImage}" Margin="5"/>
-                                        </Grid>
-                                        
-                                        <Grid Grid.Column="1">
-                                            <Grid.RowDefinitions>
-                                                <RowDefinition/>
-                                                <RowDefinition Height="35"/>
-                                            </Grid.RowDefinitions>
-                                            <StackPanel Margin="5 0">
-                                                <Label Content="{Binding Drink.Name}" FontSize="16" 
-                                                       FontWeight="Bold" />
-                                                <Label Content="{Binding Size}" FontSize="14"/>
-                                                <Label Content="{Binding Temperature}" FontSize="14"/>
-                                            </StackPanel>
-                                            <Button Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                    CommandParameter="{Binding}"
-                                                    Width="20" Height="20" Padding="0" Margin="5"
-                                                    VerticalAlignment="Top" HorizontalAlignment="Right">
-                                                <materialDesign:PackIcon Kind="CloseCircle"/>
-                                            </Button>
-                                            <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10 0">
-                                                <Button Command="{Binding DataContext.MinusCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                        CommandParameter="{Binding}"
-                                                        Width="25" Height="25" Padding="0"
-                                                        VerticalAlignment="Center" Margin="0 0 15 0">
-                                                    <materialDesign:PackIcon Kind="MinusCircle"/>
-                                                </Button>
-
-                                                <Label Content="{Binding Count}" VerticalAlignment="Center" FontSize="14"/>
-
-                                                <Button Command="{Binding DataContext.PlusCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
-                                                        CommandParameter="{Binding}"
-                                                        Width="25" Height="25" Padding="0"
-                                                        VerticalAlignment="Center" Margin="15 0 0 0">
-                                                    <materialDesign:PackIcon Kind="PlusCircle"/>
-                                                </Button>
-                                            </StackPanel>
-                                            
-                                            <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20 0">
-                                                <TextBlock FontSize="16"
-                                                           Text="{Binding TotalPrice, Converter={StaticResource PriceToStringConverter}, Mode=OneWay}"/>
-                                            </StackPanel>
-                                        </Grid>
-                                        
+                                    <Grid>
+                                        <Image Source="{Binding Drink.DrinkImage}" Margin="5"/>
                                     </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </ScrollViewer>
-            </Grid>
+
+                                    <Grid Grid.Column="1">
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition/>
+                                            <RowDefinition Height="35"/>
+                                        </Grid.RowDefinitions>
+                                        <StackPanel Margin="5 0">
+                                            <Label Content="{Binding Drink.Name}" FontSize="16" 
+                                                    FontWeight="Bold" />
+                                            <Label Content="{Binding Size}" FontSize="14"/>
+                                            <Label Content="{Binding Temperature}" FontSize="14"/>
+                                        </StackPanel>
+                                        <Button Command="{Binding DataContext.RemoveCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                CommandParameter="{Binding}"
+                                                Width="20" Height="20" Padding="0" Margin="5"
+                                                VerticalAlignment="Top" HorizontalAlignment="Right">
+                                            <materialDesign:PackIcon Kind="CloseCircle"/>
+                                        </Button>
+                                        <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Left" Margin="10 0">
+                                            <Button Command="{Binding DataContext.MinusCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Width="25" Height="25" Padding="0"
+                                                    VerticalAlignment="Center" Margin="0 0 15 0">
+                                                <materialDesign:PackIcon Kind="MinusCircle"/>
+                                            </Button>
+
+                                            <Label Content="{Binding Count}" VerticalAlignment="Center" FontSize="14"/>
+
+                                            <Button Command="{Binding DataContext.PlusCommand, RelativeSource={RelativeSource AncestorType=ItemsControl}}"
+                                                    CommandParameter="{Binding}"
+                                                    Width="25" Height="25" Padding="0"
+                                                    VerticalAlignment="Center" Margin="15 0 0 0">
+                                                <materialDesign:PackIcon Kind="PlusCircle"/>
+                                            </Button>
+                                        </StackPanel>
+
+                                        <StackPanel Grid.Row="1" Grid.Column="1" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="20 0">
+                                            <TextBlock FontSize="16"
+                                                      Text="{Binding TotalPrice, Converter={StaticResource PriceToStringConverter}, Mode=OneWay}"/>
+                                        </StackPanel>
+                                    </Grid>
+
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </ScrollViewer>
         </Border>
         <Border Grid.Row="2" BorderBrush="Gray" BorderThickness="1" Background="White">
             <Grid>

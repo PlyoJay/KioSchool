@@ -4,6 +4,7 @@ using KioSchool.View.Popups.Cafe;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -25,12 +26,26 @@ namespace KioSchool.ViewModel.Cafe
             {
                 if (_selectedCategory != value)
                 {
+                    // 이전 DrinkList의 이벤트 해제
+                    if (_selectedCategory?.DrinkList != null)
+                        _selectedCategory.DrinkList.CollectionChanged -= OnDrinkListChanged;
+
                     _selectedCategory = value;
                     OnPropertyChanged(nameof(SelectedCategory));
-                    OnPropertyChanged(nameof(DrinkList)); // DrinkList도 새로 알림
+                    OnPropertyChanged(nameof(DrinkList));
+
+                    // 새로운 DrinkList의 이벤트 연결
+                    if (_selectedCategory?.DrinkList != null)
+                        _selectedCategory.DrinkList.CollectionChanged += OnDrinkListChanged;
+
+                    // DrinkList가 바뀐 것이므로 즉시 UI 갱신용 이벤트도 호출
+                    OnDrinkListChanged(this, null);
                 }
+
             }
         }
+
+        public event Action<object?, int>? DrinkListUpdated;
 
         public ObservableCollection<Drink> DrinkList => SelectedCategory?.DrinkList;
 
@@ -43,7 +58,12 @@ namespace KioSchool.ViewModel.Cafe
             _basketViewModel = basketVM;
 
             OpenOptionDialogCommand = new RelayCommand<Drink>(OpenOptionDialog);
+        }
 
+        private void OnDrinkListChanged(object? sender, NotifyCollectionChangedEventArgs? e)
+        {
+            int count = SelectedCategory?.DrinkList?.Count ?? 0;
+            DrinkListUpdated?.Invoke(this, count);
         }
 
         private void OpenOptionDialog(Drink drink)

@@ -48,6 +48,7 @@
             <classes:EnumEqualsConverter x:Key="EnumEqualsConverter"/>
             <classes:EnumEqualityMultiConverter x:Key="EnumEqualityMultiConverter"/>
             <classes:EnumToKoreanConverter x:Key="EnumToKoreanConverter"/>
+            <classes:ImagePathToImageSourceConverter  x:Key="ImagePathConverter"/>
         </ResourceDictionary>
     </Application.Resources>
 </Application>

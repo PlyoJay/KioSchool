@@ -17,8 +17,8 @@ namespace KioSchool.Models
     {
         Coffee,
         Tea,
-        Ade,
-        Juice
+        AdeNJuisce,
+        Yogurt
     }
 
     public enum DrinkSize

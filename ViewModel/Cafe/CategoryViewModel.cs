@@ -42,10 +42,10 @@ namespace KioSchool.ViewModel.Cafe
 
             CategoryItems = new ObservableCollection<Category>()
             {
-                new Category("커피", "Coffee", CafeDrinks.SetCoffeeList(), DrinkType.Coffee),
-                new Category("차", "Tea", CafeDrinks.SetTeaList(), DrinkType.Tea),
-                new Category("에이드", "Ade", new ObservableCollection<Drink>(), DrinkType.Ade),
-                new Category("주스", "Juice", new ObservableCollection<Drink>(), DrinkType.Juice),
+                new Category("커피", "Coffee", CafeDrinkData.SetCoffeeList(), DrinkType.Coffee),
+                new Category("차", "Tea", CafeDrinkData.SetTeaList(), DrinkType.Tea),
+                new Category("에이드/주스", "Ade/Juice", CafeDrinkData.SetAdeNJuiceList(), DrinkType.AdeNJuisce),
+                new Category("요거트", "Yogurt", CafeDrinkData.SetYogurtList(), DrinkType.Yogurt),
             };
 
             SelectedCategory = CategoryItems.FirstOrDefault();

@@ -19,10 +19,11 @@ namespace KioSchool.Classes
         public void LoadSampleScenario()
         {
             Steps = new ObservableCollection<TrainingStep>
-        {
-            new TrainingStep { Instruction = "아메리카노를 선택하세요", ExpectedAction = "SelectDrink:Americano", Feedback = "좋아요!" },
-            // ... 생략
-        };
+            {
+                new TrainingStep { Instruction = "매장을 선택하세요", ExpectedAction = "SelectHow:ForHere", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "아메리카노를 선택하세요", ExpectedAction = "SelectDrink:아메리카노", Feedback = "좋아요!" },
+                // ... 생략
+            };
             CurrentStepIndex = 0;
             OnPropertyChanged(nameof(CurrentStep));
         }
@@ -33,7 +34,22 @@ namespace KioSchool.Classes
             {
                 MessageBox.Show(CurrentStep.Feedback, "정답");
                 CurrentStepIndex++;
+
+                if (CurrentStep != null)
+                {
+                    CurrentStep.Instruction = "[다음 단계] " + CurrentStep.Instruction;
+                }
+
+                var newStep = Steps[CurrentStepIndex];
+                Steps[CurrentStepIndex] = new TrainingStep
+                {
+                    Instruction = newStep.Instruction,
+                    ExpectedAction = newStep.ExpectedAction,
+                    Feedback = newStep.Feedback
+                };
+
                 OnPropertyChanged(nameof(CurrentStep));
+                OnPropertyChanged(nameof(CurrentStepIndex));
                 return true;
             }
             else

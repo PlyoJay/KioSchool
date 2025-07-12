@@ -32,7 +32,7 @@ namespace KioSchool.View
         private void CafeKioskView_Loaded(object sender, RoutedEventArgs e)
         {
             var vm = new CafeKioskViewModel();
-            var cafeHome = new CafeHome(vm.CafeHomeVM, vm.CafeOrderVM);
+            var cafeHome = new CafeHome(vm.TrainingManager, vm.CafeHomeVM, vm.CafeOrderVM);
             CafeFrame.Navigate(cafeHome);
         }
     }

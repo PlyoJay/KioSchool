@@ -17,7 +17,7 @@ namespace KioSchool.ViewModel.Cafe
 {
     public class DrinkSelectionViewModel : INotifyPropertyChanged
     {
-        private readonly TrainingManager _trainingManager;
+        public TrainingManager _trainingManager;
         private readonly BasketViewModel _basketViewModel;
 
         private Category _selectedCategory;

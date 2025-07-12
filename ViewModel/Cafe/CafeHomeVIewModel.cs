@@ -15,13 +15,13 @@ namespace KioSchool.ViewModel
 {
     public class CafeHomeVIewModel : INotifyPropertyChanged
     {
-        public TrainingManager TrainingManager { get; }
+        public TrainingManager _trainingManager { get; }
 
         public ICommand ToOrderCommand { get; }
 
         public CafeHomeVIewModel(TrainingManager trainingManager)
         {
-            TrainingManager = trainingManager;
+            _trainingManager = trainingManager;
 
             ToOrderCommand = new RelayCommand(ToOrderPage);
         }
@@ -29,6 +29,14 @@ namespace KioSchool.ViewModel
         private void ToOrderPage(object paramenter)
         {
             string tag = (string)paramenter;
+
+            if (_trainingManager != null)
+            {
+                string actionKey = $"SelectHow:{tag}";
+                if (!_trainingManager.CheckAction(actionKey))
+                    return;
+            }
+
             CafeOrderType orderType = (CafeOrderType)Enum.Parse(typeof(CafeOrderType), tag);
             Enums.SetCafeOrderType(orderType);        
         }

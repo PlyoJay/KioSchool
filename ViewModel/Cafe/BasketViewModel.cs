@@ -1,4 +1,5 @@
-﻿using KioSchool.Controls;
+﻿using KioSchool.Classes;
+using KioSchool.Controls;
 using KioSchool.Models;
 using KioSchool.View.Pages.CafePages;
 using System;
@@ -17,6 +18,7 @@ namespace KioSchool.ViewModel
     public class BasketViewModel : INotifyPropertyChanged
     {
         public NavigationService NavigationService { get; set; }
+        public TrainingManager _trainingManager { get; }
 
         private readonly CafeHomeVIewModel _homeVM;
         private readonly OrderViewModel _orderVM;
@@ -34,8 +36,9 @@ namespace KioSchool.ViewModel
         public ICommand RemoveAllCommand { get; }
         public ICommand ToHomeCommand { get; }
 
-        public BasketViewModel(CafeHomeVIewModel homeVM, OrderViewModel orderVM)
+        public BasketViewModel(CafeHomeVIewModel homeVM, OrderViewModel orderVM, TrainingManager trainingManager)
         {
+            _trainingManager = trainingManager;
             _homeVM = homeVM;
             _orderVM = orderVM;
 
@@ -79,7 +82,7 @@ namespace KioSchool.ViewModel
             ToHomeCommand = new RelayCommand(obj =>
             {
                 if (NavigationService != null)
-                    NavigationService.Navigate(new CafeHome(_homeVM, _orderVM));
+                    NavigationService.Navigate(new CafeHome(_trainingManager, _homeVM, _orderVM));
             });
         }
 

@@ -14,6 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using KioSchool.Classes;
+using KioSchool.Models;
 
 namespace KioSchool.View.Pages.CafePages
 {
@@ -22,28 +24,20 @@ namespace KioSchool.View.Pages.CafePages
     /// </summary>
     public partial class CafeOrder : Page
     {
-        public CafeOrder()
+        public CafeOrder(OrderViewModel vm)
         {
             InitializeComponent();
 
+            this.DataContext = vm;
             Loaded += CafeOrder_Loaded;
         }
 
         private void CafeOrder_Loaded(object sender, RoutedEventArgs e)
         {
-            var navService = NavigationService.GetNavigationService(this);
-            if (navService != null)
+            if (DataContext is OrderViewModel vm)
             {
-                var basketVM = new BasketViewModel(navService);
-                var drinkVM = new DrinkSelectionViewModel(basketVM);
-                var categoryVM = new CategoryViewModel(drinkVM);
-
-                this.DataContext = new OrderViewModel(basketVM, drinkVM, categoryVM);
-            }
-            else
-            {
-                // 예외 처리 또는 로그 출력 가능
-                MessageBox.Show("NavigationService is null. This page may not be hosted in a Frame.");
+                var nav = NavigationService.GetNavigationService(this);
+                vm.BasketVM.NavigationService = nav;
             }
         }
     }

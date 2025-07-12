@@ -1,4 +1,5 @@
-﻿using KioSchool.Controls;
+﻿using KioSchool.Classes;
+using KioSchool.Controls;
 using KioSchool.Models;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,16 @@ using System.Windows.Input;
 
 namespace KioSchool.ViewModel
 {
-    class CafeHomeVIewModel : INotifyPropertyChanged
+    public class CafeHomeVIewModel : INotifyPropertyChanged
     {
+        public TrainingManager TrainingManager { get; }
+
         public ICommand ToOrderCommand { get; }
 
-        public CafeHomeVIewModel()
+        public CafeHomeVIewModel(TrainingManager trainingManager)
         {
+            TrainingManager = trainingManager;
+
             ToOrderCommand = new RelayCommand(ToOrderPage);
         }
 

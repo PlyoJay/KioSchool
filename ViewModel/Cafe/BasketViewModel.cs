@@ -16,7 +16,10 @@ namespace KioSchool.ViewModel
 {
     public class BasketViewModel : INotifyPropertyChanged
     {
-        private readonly NavigationService _navigationService;
+        public NavigationService NavigationService { get; set; }
+
+        private readonly CafeHomeVIewModel _homeVM;
+        private readonly OrderViewModel _orderVM;
 
         public Basket Basket { get; } = new();
 
@@ -31,9 +34,10 @@ namespace KioSchool.ViewModel
         public ICommand RemoveAllCommand { get; }
         public ICommand ToHomeCommand { get; }
 
-        public BasketViewModel(NavigationService navigationService)
+        public BasketViewModel(CafeHomeVIewModel homeVM, OrderViewModel orderVM)
         {
-            _navigationService = navigationService;
+            _homeVM = homeVM;
+            _orderVM = orderVM;
 
             MinusCommand = new RelayCommand(obj =>
             {
@@ -74,7 +78,8 @@ namespace KioSchool.ViewModel
 
             ToHomeCommand = new RelayCommand(obj =>
             {
-                _navigationService.Navigate(new CafeHome());
+                if (NavigationService != null)
+                    NavigationService.Navigate(new CafeHome(_homeVM, _orderVM));
             });
         }
 

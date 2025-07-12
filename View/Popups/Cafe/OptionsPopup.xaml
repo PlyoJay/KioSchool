@@ -4,9 +4,11 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KioSchool.View.Popups.Cafe"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" xmlns:viewmodel="clr-namespace:KioSchool.ViewModel" d:DataContext="{d:DesignInstance Type=viewmodel:OptionsDialogViewModel}"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodel="clr-namespace:KioSchool.ViewModel" 
+        d:DataContext="{d:DesignInstance Type=viewmodel:OptionsDialogViewModel}"
         mc:Ignorable="d"
-        Title="OptionsPopup" Height="880" Width="660">
+        Title="OptionsPopup" Height="880" Width="660" WindowStartupLocation="CenterScreen">
     <Grid Cursor="">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>

@@ -1,4 +1,5 @@
 ﻿using KioSchool.Models;
+using KioSchool.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,15 @@ namespace KioSchool.View.Pages.CafePages
     /// </summary>
     public partial class CafeHome : Page
     {
-        public CafeHome()
+        private readonly CafeHomeVIewModel _viewModel;
+        private readonly OrderViewModel _orderViewModel;
+
+        public CafeHome(CafeHomeVIewModel vm, OrderViewModel orderVM)
         {
             InitializeComponent();
+            _viewModel = vm;
+            _orderViewModel = orderVM;
+            this.DataContext = _viewModel;
         }
 
         private void btnCafeKiosk_Click(object sender, RoutedEventArgs e)
@@ -35,7 +42,7 @@ namespace KioSchool.View.Pages.CafePages
             CafeOrderType orderType = (CafeOrderType)Enum.Parse(typeof(CafeOrderType), tag);
             Enums.SetCafeOrderType(orderType);
 
-            this.NavigationService?.Navigate(new CafeOrder());
+            this.NavigationService?.Navigate(new CafeOrder(_orderViewModel));
         }
     }
 }

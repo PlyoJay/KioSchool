@@ -9,8 +9,16 @@
              d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid>
-        <Frame x:Name="CafeFrame" 
-               Source="Pages/CafePages/CafeHome.xaml" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid>
+            <TextBlock Text="{Binding TrainingManager.CurrentStep.Instruction}"
+                       FontSize="24" FontWeight="Bold" Foreground="Blue"
+                       HorizontalAlignment="Center"/>
+        </Grid>
+        <Frame x:Name="CafeFrame" Grid.Row="1"
                NavigationUIVisibility="Hidden"/>
     </Grid>
 </UserControl>

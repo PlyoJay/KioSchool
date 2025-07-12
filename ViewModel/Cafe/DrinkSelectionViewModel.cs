@@ -1,4 +1,5 @@
-﻿using KioSchool.Controls;
+﻿using KioSchool.Classes;
+using KioSchool.Controls;
 using KioSchool.Models;
 using KioSchool.View.Popups.Cafe;
 using System;
@@ -16,6 +17,7 @@ namespace KioSchool.ViewModel.Cafe
 {
     public class DrinkSelectionViewModel : INotifyPropertyChanged
     {
+        private readonly TrainingManager _trainingManager;
         private readonly BasketViewModel _basketViewModel;
 
         private Category _selectedCategory;
@@ -53,10 +55,10 @@ namespace KioSchool.ViewModel.Cafe
         public ICommand OpenOptionDialogCommand { get; }
 
 
-        public DrinkSelectionViewModel(BasketViewModel basketVM)
+        public DrinkSelectionViewModel(BasketViewModel basketVM, TrainingManager trainingManager)
         {
             _basketViewModel = basketVM;
-
+            _trainingManager = trainingManager;
             OpenOptionDialogCommand = new RelayCommand<Drink>(OpenOptionDialog);
         }
 
@@ -68,6 +70,13 @@ namespace KioSchool.ViewModel.Cafe
 
         private void OpenOptionDialog(Drink drink)
         {
+            if (_trainingManager != null)
+            {
+                string actionKey = $"SelectDrink:{drink.Name}";
+                if (!_trainingManager.CheckAction(actionKey))
+                    return; // 틀리면 중단
+            }
+
             var dialogVM = new OptionsDialogViewModel(drink);
             var dialog = new OptionsPopup { DataContext = dialogVM };
 

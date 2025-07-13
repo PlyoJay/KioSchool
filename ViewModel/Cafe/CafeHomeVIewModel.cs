@@ -17,16 +17,16 @@ namespace KioSchool.ViewModel
     {
         public TrainingManager _trainingManager { get; }
 
-        public ICommand ToOrderCommand { get; }
+        public ICommand ToMenuSelectionPageCommand { get; }
 
         public CafeHomeVIewModel(TrainingManager trainingManager)
         {
             _trainingManager = trainingManager;
 
-            ToOrderCommand = new RelayCommand(ToOrderPage);
+            ToMenuSelectionPageCommand = new RelayCommand(ToMenuSelectionPage);
         }
 
-        private void ToOrderPage(object paramenter)
+        private void ToMenuSelectionPage(object paramenter)
         {
             string tag = (string)paramenter;
 

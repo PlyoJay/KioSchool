@@ -15,7 +15,7 @@ namespace KioSchool.ViewModel
         public TrainingManager TrainingManager { get; }
 
         public CafeHomeVIewModel CafeHomeVM { get; }
-        public OrderViewModel CafeOrderVM { get; }
+        public MenuSelectionPageViewModel MenuSelectionPageVM { get; }
 
         public CafeKioskViewModel()
         {
@@ -23,7 +23,7 @@ namespace KioSchool.ViewModel
             TrainingManager.LoadSampleScenario();
 
             CafeHomeVM = new CafeHomeVIewModel(TrainingManager);
-            CafeOrderVM = new OrderViewModel(CafeHomeVM, TrainingManager);
+            MenuSelectionPageVM = new MenuSelectionPageViewModel(CafeHomeVM, TrainingManager);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -11,24 +11,24 @@ using System.Windows.Navigation;
 
 namespace KioSchool.ViewModel
 {
-    public class OrderViewModel : INotifyPropertyChanged
+    public class MenuSelectionPageViewModel : INotifyPropertyChanged
     {
         public CafeHomeVIewModel CafeHome { get; set; }
 
         public CategoryViewModel CategoryVM { get; }
-        public DrinkSelectionViewModel DrinkSelectionVM { get; }
+        public MenuSelectionViewModel DrinkSelectionVM { get; }
         public BasketViewModel BasketVM { get; }
 
         public TrainingManager TrainingManager { get; }
 
 
-        public OrderViewModel(CafeHomeVIewModel homeVM, TrainingManager trainingManager)
+        public MenuSelectionPageViewModel(CafeHomeVIewModel homeVM, TrainingManager trainingManager)
         {
             CafeHome = homeVM;
             TrainingManager = trainingManager;
 
             BasketVM = new BasketViewModel(CafeHome, this, TrainingManager);
-            DrinkSelectionVM = new DrinkSelectionViewModel(BasketVM, TrainingManager);
+            DrinkSelectionVM = new MenuSelectionViewModel(BasketVM, TrainingManager);
             CategoryVM = new CategoryViewModel(DrinkSelectionVM, TrainingManager);
         }
 

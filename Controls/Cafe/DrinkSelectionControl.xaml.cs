@@ -35,7 +35,7 @@ namespace KioSchool.Controls.Cafe
         {
             this.Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (this.DataContext is DrinkSelectionViewModel vm)
+                if (this.DataContext is MenuSelectionViewModel vm)
                 {
                     vm.DrinkListUpdated += (s, count) =>
                     {

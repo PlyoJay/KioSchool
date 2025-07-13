@@ -34,6 +34,10 @@ namespace KioSchool.Classes
                 new TrainingStep { Instruction = "2개로 올리세요", ExpectedAction = "AddCount", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "선택완료를 클릭하세요", ExpectedAction = "Click:True", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "아메리카노를 2개로 올리세요", ExpectedAction = "AddCount:아메리카노", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "블루베리스무디를 삭제하세요", ExpectedAction = "Remove:블루베리스무디", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "주문하기를 클릭하세요", ExpectedAction = "Click:주문하기", Feedback = "좋아요!" },
+
+
             };
             CurrentStepIndex = 0;
             OnPropertyChanged(nameof(CurrentStep));
@@ -44,28 +48,30 @@ namespace KioSchool.Classes
             if (CurrentStep?.ExpectedAction == action)
             {
                 MessageBox.Show(CurrentStep.Feedback, "정답");
-                CurrentStepIndex++;
 
-                if (CurrentStepIndex >= Steps.Count)
+                // 다음 단계가 있는 경우에만 증가
+                if (CurrentStepIndex + 1 < Steps.Count)
+                {
+                    CurrentStepIndex++;
+
+                    var newStep = Steps[CurrentStepIndex];
+                    Steps[CurrentStepIndex] = new TrainingStep
+                    {
+                        Instruction = "[다음 단계] " + newStep.Instruction,
+                        ExpectedAction = newStep.ExpectedAction,
+                        Feedback = newStep.Feedback
+                    };
+
+                    OnPropertyChanged(nameof(CurrentStep));
+                    OnPropertyChanged(nameof(CurrentStepIndex));
+                }
+                else
                 {
                     MessageBox.Show("훈련을 성공적으로 완수하였습니다!", "완료");
-                    CurrentStep.Instruction = "[훈련 완수]";
+                    CurrentStep.Instruction = "훈련 완수";
                     IsTrainingMode = false;
-                    return true;
                 }
 
-                CurrentStep.Instruction = "[다음 단계] " + CurrentStep.Instruction;
-
-                var newStep = Steps[CurrentStepIndex];
-                Steps[CurrentStepIndex] = new TrainingStep
-                {
-                    Instruction = newStep.Instruction,
-                    ExpectedAction = newStep.ExpectedAction,
-                    Feedback = newStep.Feedback
-                };
-
-                OnPropertyChanged(nameof(CurrentStep));
-                OnPropertyChanged(nameof(CurrentStepIndex));
                 return true;
             }
             else

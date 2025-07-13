@@ -15,7 +15,7 @@ using System.Windows.Input;
 
 namespace KioSchool.ViewModel.Cafe
 {
-    public class DrinkSelectionViewModel : INotifyPropertyChanged
+    public class MenuSelectionViewModel : INotifyPropertyChanged
     {
         public TrainingManager _trainingManager;
         private readonly BasketViewModel _basketViewModel;
@@ -55,7 +55,7 @@ namespace KioSchool.ViewModel.Cafe
         public ICommand OpenOptionDialogCommand { get; }
 
 
-        public DrinkSelectionViewModel(BasketViewModel basketVM, TrainingManager trainingManager)
+        public MenuSelectionViewModel(BasketViewModel basketVM, TrainingManager trainingManager)
         {
             _basketViewModel = basketVM;
             _trainingManager = trainingManager;

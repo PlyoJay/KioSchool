@@ -17,7 +17,7 @@ namespace KioSchool.ViewModel.Cafe
     {
         public TrainingManager _trainingManager { get; }
 
-        public DrinkSelectionViewModel _drinkSelectionViewModel { get; set; }
+        public MenuSelectionViewModel _drinkSelectionViewModel { get; set; }
 
         public ObservableCollection<Category> CategoryItems { get; set; }
 
@@ -37,7 +37,7 @@ namespace KioSchool.ViewModel.Cafe
 
         public ICommand ChangeCateogryCommand { get; }
 
-        public CategoryViewModel( DrinkSelectionViewModel drinkSelectionVM, TrainingManager trainingManager)
+        public CategoryViewModel( MenuSelectionViewModel drinkSelectionVM, TrainingManager trainingManager)
         {
             _drinkSelectionViewModel = drinkSelectionVM;
             _trainingManager = trainingManager;

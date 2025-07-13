@@ -21,7 +21,7 @@ namespace KioSchool.ViewModel
         public TrainingManager _trainingManager { get; }
 
         private readonly CafeHomeVIewModel _homeVM;
-        private readonly OrderViewModel _orderVM;
+        private readonly MenuSelectionPageViewModel _menuSelectionPageVM;
 
         public Basket Basket { get; } = new();
 
@@ -34,13 +34,14 @@ namespace KioSchool.ViewModel
         public ICommand PlusCommand { get; }
         public ICommand RemoveCommand { get; }
         public ICommand RemoveAllCommand { get; }
+        public ICommand ToOrderPageCommand { get; }
         public ICommand ToHomeCommand { get; }
 
-        public BasketViewModel(CafeHomeVIewModel homeVM, OrderViewModel orderVM, TrainingManager trainingManager)
+        public BasketViewModel(CafeHomeVIewModel homeVM, MenuSelectionPageViewModel menuSelectionPageVM, TrainingManager trainingManager)
         {
             _trainingManager = trainingManager;
             _homeVM = homeVM;
-            _orderVM = orderVM;
+            _menuSelectionPageVM = menuSelectionPageVM;
 
             MinusCommand = new RelayCommand(obj =>
             {
@@ -71,6 +72,13 @@ namespace KioSchool.ViewModel
             {
                 if (obj is BasketItem item)
                 {
+                    if (_trainingManager.GetIsTrainingMode())
+                    {
+                        string actionKey = $"Remove:{item.Drink.Name}";
+                        if (!_trainingManager.CheckAction(actionKey))
+                            return;
+                    }
+
                     Basket.Items.Remove(item);
                     OnPropertyChanged(nameof(Items));
                     OnPropertyChanged(nameof(TotalPrice));
@@ -86,10 +94,15 @@ namespace KioSchool.ViewModel
                 OnPropertyChanged(nameof(TotalPrice));
             });
 
+            ToOrderPageCommand = new RelayCommand(obj =>
+            {
+
+            });
+
             ToHomeCommand = new RelayCommand(obj =>
             {
                 if (NavigationService != null)
-                    NavigationService.Navigate(new CafeHome(_trainingManager, _homeVM, _orderVM));
+                    NavigationService.Navigate(new CafeHomePage(_trainingManager, _homeVM, _menuSelectionPageVM));
             });
         }
 

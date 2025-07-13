@@ -22,19 +22,19 @@ namespace KioSchool.View.Pages.CafePages
     /// <summary>
     /// CafeOrder.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class CafeOrder : Page
+    public partial class MenuSelectionPage : Page
     {
-        public CafeOrder(OrderViewModel vm)
+        public MenuSelectionPage(MenuSelectionPageViewModel vm)
         {
             InitializeComponent();
 
             this.DataContext = vm;
-            Loaded += CafeOrder_Loaded;
+            Loaded += MenuSelectionPage_Loaded;
         }
 
-        private void CafeOrder_Loaded(object sender, RoutedEventArgs e)
+        private void MenuSelectionPage_Loaded(object sender, RoutedEventArgs e)
         {
-            if (DataContext is OrderViewModel vm)
+            if (DataContext is MenuSelectionPageViewModel vm)
             {
                 var nav = NavigationService.GetNavigationService(this);
                 vm.BasketVM.NavigationService = nav;

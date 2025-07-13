@@ -22,20 +22,20 @@ namespace KioSchool.View.Pages.CafePages
     /// <summary>
     /// CafeHome.xaml에 대한 상호 작용 논리
     /// </summary>
-    public partial class CafeHome : Page
+    public partial class CafeHomePage : Page
     {
         public TrainingManager _trainingManager { get; }
 
         private readonly CafeHomeVIewModel _viewModel;
-        private readonly OrderViewModel _orderViewModel;
+        private readonly MenuSelectionPageViewModel _menuSelectionPageViewModel;
 
-        public CafeHome(TrainingManager trainingManager, CafeHomeVIewModel vm, OrderViewModel orderVM)
+        public CafeHomePage(TrainingManager trainingManager, CafeHomeVIewModel vm, MenuSelectionPageViewModel menuSelectionPageVM)
         {
             InitializeComponent();
 
             _trainingManager = trainingManager;
             _viewModel = vm;
-            _orderViewModel = orderVM;
+            _menuSelectionPageViewModel = menuSelectionPageVM;
             this.DataContext = _viewModel;
         }
 
@@ -54,7 +54,7 @@ namespace KioSchool.View.Pages.CafePages
             CafeOrderType orderType = (CafeOrderType)Enum.Parse(typeof(CafeOrderType), tag);
             Enums.SetCafeOrderType(orderType);
 
-            this.NavigationService?.Navigate(new CafeOrder(_orderViewModel));
+            this.NavigationService?.Navigate(new MenuSelectionPage(_menuSelectionPageViewModel));
         }
     }
 }

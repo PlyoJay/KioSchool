@@ -33,7 +33,7 @@ namespace KioSchool.View
         {
             //var vm = new CafeKioskViewModel();
             var vm = this.DataContext as CafeKioskViewModel;
-            var cafeHome = new CafeHome(vm.TrainingManager, vm.CafeHomeVM, vm.CafeOrderVM);
+            var cafeHome = new CafeHomePage(vm.TrainingManager, vm.CafeHomeVM, vm.MenuSelectionPageVM);
             CafeFrame.Navigate(cafeHome);
         }
     }

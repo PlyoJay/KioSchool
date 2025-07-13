@@ -16,7 +16,7 @@
         <Grid>
             <TextBlock Text="{Binding TrainingManager.CurrentStep.Instruction}"
                        FontSize="24" FontWeight="Bold" Foreground="Blue"
-                       HorizontalAlignment="Center"/>
+                       HorizontalAlignment="Center" VerticalAlignment="Center"/>
         </Grid>
         <Frame x:Name="CafeFrame" Grid.Row="1"
                NavigationUIVisibility="Hidden"/>

@@ -31,7 +31,8 @@ namespace KioSchool.View
 
         private void CafeKioskView_Loaded(object sender, RoutedEventArgs e)
         {
-            var vm = new CafeKioskViewModel();
+            //var vm = new CafeKioskViewModel();
+            var vm = this.DataContext as CafeKioskViewModel;
             var cafeHome = new CafeHome(vm.TrainingManager, vm.CafeHomeVM, vm.CafeOrderVM);
             CafeFrame.Navigate(cafeHome);
         }

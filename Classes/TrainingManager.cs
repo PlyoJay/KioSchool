@@ -22,7 +22,10 @@ namespace KioSchool.Classes
             {
                 new TrainingStep { Instruction = "매장을 선택하세요", ExpectedAction = "SelectHow:ForHere", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "아메리카노를 선택하세요", ExpectedAction = "SelectDrink:아메리카노", Feedback = "좋아요!" },
-                // ... 생략
+                new TrainingStep { Instruction = "Hot을 선택하세요", ExpectedAction = "SelectTemperature:Hot", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "라지를 선택하세요", ExpectedAction = "SelectSize:Large", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "선택완료를 클릭하세요", ExpectedAction = "Click:True", Feedback = "좋아요!" },
+
             };
             CurrentStepIndex = 0;
             OnPropertyChanged(nameof(CurrentStep));
@@ -57,6 +60,17 @@ namespace KioSchool.Classes
                 MessageBox.Show("다시 시도해보세요!", "오답");
                 return false;
             }
+        }
+
+        public bool CheckCurrentStepIndex(int index)
+        {
+            if (CurrentStepIndex != index)
+            {
+                MessageBox.Show("다시 시도해보세요!", "오답");
+                return false;
+            }
+
+            return true;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

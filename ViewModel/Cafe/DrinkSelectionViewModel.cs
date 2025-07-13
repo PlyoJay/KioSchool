@@ -77,7 +77,7 @@ namespace KioSchool.ViewModel.Cafe
                     return; // 틀리면 중단
             }
 
-            var dialogVM = new OptionsDialogViewModel(drink);
+            var dialogVM = new OptionsDialogViewModel(drink, _trainingManager);
             var dialog = new OptionsPopup { DataContext = dialogVM };
 
             if (dialog.ShowDialog() == true)

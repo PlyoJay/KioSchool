@@ -44,7 +44,7 @@ namespace KioSchool.View.Pages.CafePages
             Button btn = (Button)sender;
             string tag = btn.Tag.ToString();
 
-            if (_trainingManager != null)
+            if (_trainingManager.GetIsTrainingMode())
             {
                 string actionKey = $"SelectHow:{tag}";
                 if (!_trainingManager.CheckAction(actionKey))

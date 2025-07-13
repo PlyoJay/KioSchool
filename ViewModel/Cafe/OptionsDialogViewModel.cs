@@ -91,7 +91,9 @@ namespace KioSchool.ViewModel
 
         private void SelectTemperature(object param)
         {           
-            if (_trainingManager != null)
+            SelectedTemperature = (DrinkTemperature)param;            
+            
+            if (_trainingManager.GetIsTrainingMode())
             {
                 if (!_trainingManager.CheckCurrentStepIndex(2))
                     return;
@@ -99,14 +101,14 @@ namespace KioSchool.ViewModel
                 string actionKey = $"SelectTemperature:{(DrinkTemperature)param}";
                 if (!_trainingManager.CheckAction(actionKey))
                     return;
-            }
-            
-            SelectedTemperature = (DrinkTemperature)param;            
+            }            
         }
 
         private void SelectSize(object param)
         {
-            if (_trainingManager != null)
+            SelectedSize = (DrinkSize)param;
+            
+            if (_trainingManager.GetIsTrainingMode())
             {
                 if (!_trainingManager.CheckCurrentStepIndex(3))
                     return;
@@ -114,15 +116,20 @@ namespace KioSchool.ViewModel
                 string actionKey = $"SelectSize:{(DrinkSize)param}";
                 if (!_trainingManager.CheckAction(actionKey))
                     return;
-            }
-            
-            SelectedSize = (DrinkSize)param;
+            }            
         }
 
         private void PlusCount(object obj)
         {
             if (Count >= 99)
                 return;
+
+            if (_trainingManager.GetIsTrainingMode())
+            {
+                string actionKey = $"AddCount";
+                if (!_trainingManager.CheckAction(actionKey))
+                    return;
+            }
 
             Count++;
         }
@@ -137,11 +144,9 @@ namespace KioSchool.ViewModel
 
         private void Close(Window w, bool result)
         {
-            if (_trainingManager != null)
+            if (_trainingManager.GetIsTrainingMode())
             {
-                if (!_trainingManager.CheckCurrentStepIndex(4))
-                    return;
-
+                
                 string actionKey = $"Click:{result}";
                 if (!_trainingManager.CheckAction(actionKey))
                     return;

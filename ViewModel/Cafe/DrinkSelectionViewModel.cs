@@ -70,7 +70,7 @@ namespace KioSchool.ViewModel.Cafe
 
         private void OpenOptionDialog(Drink drink)
         {
-            if (_trainingManager != null)
+            if (_trainingManager.GetIsTrainingMode())
             {
                 string actionKey = $"SelectDrink:{drink.Name}";
                 if (!_trainingManager.CheckAction(actionKey))

@@ -28,8 +28,8 @@ namespace KioSchool.ViewModel
             TrainingManager = trainingManager;
 
             BasketVM = new BasketViewModel(CafeHome, this, TrainingManager);
-            DrinkSelectionVM = new DrinkSelectionViewModel(BasketVM, trainingManager);
-            CategoryVM = new CategoryViewModel(DrinkSelectionVM);
+            DrinkSelectionVM = new DrinkSelectionViewModel(BasketVM, TrainingManager);
+            CategoryVM = new CategoryViewModel(DrinkSelectionVM, TrainingManager);
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

@@ -8,7 +8,7 @@
         xmlns:viewmodel="clr-namespace:KioSchool.ViewModel" 
         d:DataContext="{d:DesignInstance Type=viewmodel:OptionsDialogViewModel}"
         mc:Ignorable="d"
-        Title="OptionsPopup" Height="780" Width="660" WindowStartupLocation="CenterScreen">
+        Title="OptionsPopup" Height="680" Width="660" WindowStartupLocation="CenterScreen">
     <Grid Cursor="">
         <Grid.RowDefinitions>
             <RowDefinition Height="200"/>

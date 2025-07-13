@@ -30,7 +30,7 @@ namespace KioSchool.ViewModel
         {
             string tag = (string)paramenter;
 
-            if (_trainingManager != null)
+            if (_trainingManager.GetIsTrainingMode())
             {
                 string actionKey = $"SelectHow:{tag}";
                 if (!_trainingManager.CheckAction(actionKey))

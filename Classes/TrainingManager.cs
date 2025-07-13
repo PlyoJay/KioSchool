@@ -15,17 +15,25 @@ namespace KioSchool.Classes
         public ObservableCollection<TrainingStep> Steps { get; set; }
         public int CurrentStepIndex { get; private set; }
         public TrainingStep CurrentStep => Steps.ElementAtOrDefault(CurrentStepIndex);
+        
+        private bool IsTrainingMode { get; set; }
 
         public void LoadSampleScenario()
         {
+            IsTrainingMode = true;
+
             Steps = new ObservableCollection<TrainingStep>
             {
                 new TrainingStep { Instruction = "매장을 선택하세요", ExpectedAction = "SelectHow:ForHere", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "아메리카노를 선택하세요", ExpectedAction = "SelectDrink:아메리카노", Feedback = "좋아요!" },
-                new TrainingStep { Instruction = "Hot을 선택하세요", ExpectedAction = "SelectTemperature:Hot", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "핫을 선택하세요", ExpectedAction = "SelectTemperature:Hot", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "라지를 선택하세요", ExpectedAction = "SelectSize:Large", Feedback = "좋아요!" },
                 new TrainingStep { Instruction = "선택완료를 클릭하세요", ExpectedAction = "Click:True", Feedback = "좋아요!" },
-
+                new TrainingStep { Instruction = "요거트 카테고리를 클릭하세요", ExpectedAction = "SelectCategory:요거트", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "블루베리스무디를 선택하세요", ExpectedAction = "SelectDrink:블루베리스무디", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "2개로 올리세요", ExpectedAction = "AddCount", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "선택완료를 클릭하세요", ExpectedAction = "Click:True", Feedback = "좋아요!" },
+                new TrainingStep { Instruction = "아메리카노를 2개로 올리세요", ExpectedAction = "AddCount:아메리카노", Feedback = "좋아요!" },
             };
             CurrentStepIndex = 0;
             OnPropertyChanged(nameof(CurrentStep));
@@ -38,10 +46,15 @@ namespace KioSchool.Classes
                 MessageBox.Show(CurrentStep.Feedback, "정답");
                 CurrentStepIndex++;
 
-                if (CurrentStep != null)
+                if (CurrentStepIndex >= Steps.Count)
                 {
-                    CurrentStep.Instruction = "[다음 단계] " + CurrentStep.Instruction;
+                    MessageBox.Show("훈련을 성공적으로 완수하였습니다!", "완료");
+                    CurrentStep.Instruction = "[훈련 완수]";
+                    IsTrainingMode = false;
+                    return true;
                 }
+
+                CurrentStep.Instruction = "[다음 단계] " + CurrentStep.Instruction;
 
                 var newStep = Steps[CurrentStepIndex];
                 Steps[CurrentStepIndex] = new TrainingStep
@@ -71,6 +84,11 @@ namespace KioSchool.Classes
             }
 
             return true;
+        }
+
+        public bool GetIsTrainingMode()
+        {
+            return IsTrainingMode;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

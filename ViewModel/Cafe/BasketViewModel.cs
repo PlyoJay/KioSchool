@@ -55,6 +55,13 @@ namespace KioSchool.ViewModel
             {
                 if (obj is BasketItem item)
                 {
+                    if (_trainingManager.GetIsTrainingMode())
+                    {
+                        string actionKey = $"AddCount:{item.Drink.Name}";
+                        if (!_trainingManager.CheckAction(actionKey))
+                            return;
+                    }
+
                     item.Count = Math.Min(99, item.Count + 1);
                     AddDrink(item, item.Count);
                 }

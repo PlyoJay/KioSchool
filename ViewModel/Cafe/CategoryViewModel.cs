@@ -1,4 +1,5 @@
-﻿using KioSchool.Controls;
+﻿using KioSchool.Classes;
+using KioSchool.Controls;
 using KioSchool.Models;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,8 @@ namespace KioSchool.ViewModel.Cafe
 {
     public class CategoryViewModel : INotifyPropertyChanged
     {
+        public TrainingManager _trainingManager { get; }
+
         public DrinkSelectionViewModel _drinkSelectionViewModel { get; set; }
 
         public ObservableCollection<Category> CategoryItems { get; set; }
@@ -34,9 +37,10 @@ namespace KioSchool.ViewModel.Cafe
 
         public ICommand ChangeCateogryCommand { get; }
 
-        public CategoryViewModel( DrinkSelectionViewModel drinkSelectionVM)
+        public CategoryViewModel( DrinkSelectionViewModel drinkSelectionVM, TrainingManager trainingManager)
         {
             _drinkSelectionViewModel = drinkSelectionVM;
+            _trainingManager = trainingManager;
 
             ChangeCateogryCommand = new RelayCommand(ChangeCategory);
 
@@ -57,6 +61,13 @@ namespace KioSchool.ViewModel.Cafe
         {
             if (obj is Category clickedCategory)
             {
+                if (_trainingManager.GetIsTrainingMode())
+                {
+                    string actionKey = $"SelectCategory:{clickedCategory.Name}";
+                    if (!_trainingManager.CheckAction(actionKey))
+                        return;
+                }
+
                 foreach (var category in CategoryItems)
                     category.IsSelected = false;
 

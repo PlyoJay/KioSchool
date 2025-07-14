@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <ScrollViewer>
+    <Grid Background="#FFFFDE">
+        <ScrollViewer VerticalScrollBarVisibility="Hidden">
             <ScrollViewer.Resources>
                 <Style TargetType="ScrollBar">
                     <Setter Property="Foreground" Value="Black"/>

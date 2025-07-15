@@ -96,7 +96,7 @@ namespace KioSchool.ViewModel
 
             ToOrderPageCommand = new RelayCommand(obj =>
             {
-
+                
             });
 
             ToHomeCommand = new RelayCommand(obj =>

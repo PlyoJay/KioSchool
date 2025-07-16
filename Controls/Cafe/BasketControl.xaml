@@ -139,7 +139,7 @@
                 <materialDesign:PackIcon Kind="TrashCan" Width="40" Height="40"/>
             </Button>
             <Button Grid.Column="1" Content="주문하기" FontSize="24" FontWeight="Bold"
-                    Command="{Binding OrderCommand}"
+                    Command="{Binding ToOrderPageCommand}"
                     Background="#BE1744" BorderBrush="Transparent"
                     Height="70" Padding="0"
                     VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>

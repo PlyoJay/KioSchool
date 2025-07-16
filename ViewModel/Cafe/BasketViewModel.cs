@@ -2,6 +2,8 @@
 using KioSchool.Controls;
 using KioSchool.Models;
 using KioSchool.View.Pages.CafePages;
+using KioSchool.View.Popups.Cafe;
+using KioSchool.ViewModel.Cafe;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using System.Windows.Navigation;
+using static MaterialDesignThemes.Wpf.Theme.ToolBar;
 
 namespace KioSchool.ViewModel
 {
@@ -96,7 +99,16 @@ namespace KioSchool.ViewModel
 
             ToOrderPageCommand = new RelayCommand(obj =>
             {
-                
+                if (_trainingManager.GetIsTrainingMode())
+                {
+                    string actionKey = $"Click:주문하기";
+                    if (!_trainingManager.CheckAction(actionKey))
+                        return;
+                }
+
+                PaymentPopupViewModel paymentPopupVM = new PaymentPopupViewModel(TotalPrice, TotalCount);
+                PaymentPopup paymentPopup = new PaymentPopup();
+                paymentPopup.ShowDialog();
             });
 
             ToHomeCommand = new RelayCommand(obj =>
